@@ -14,6 +14,18 @@ body {
   padding: 20px;
 }
 
+.signup-link {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.signup-link span {
+  color: blue;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+
 .form-container {
   display: flex;
   flex-direction: column;
@@ -162,3 +174,123 @@ body {
   background: #d3f9d8;
 }
 
+.menu-bar {
+  position: absolute;
+  top: 20px;
+  left: 20px; /* Changed from right to left */
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -250px; /* Changed from right */
+  width: 250px;
+  height: 100%;
+  background: white;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Shadow now on the right side */
+  padding: 20px;
+  transition: left 0.3s ease;
+  z-index: 1000;
+}
+
+.sidebar.open {
+  left: 0;
+}
+
+.diary-entry img {
+  width: 100px;  /* Smaller than before */
+  height: auto;
+}
+
+.calendar-card {
+  background: #f5e9d8;
+  padding: 20px;
+  border-radius: 24px;
+  margin-top: 20px;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.calendar-table {
+  width: 100%;
+  text-align: center;
+  border-collapse: collapse;
+}
+
+.calendar-table th {
+  font-weight: bold;
+}
+
+.calendar-table td {
+  padding: 8px;
+  border-radius: 50%;
+}
+
+.calendar-table .active-day {
+  background: #b0c4a7;
+}
+
+.back-button {
+  position: fixed;
+  top: 60px;
+  left: 20px;  /* Now on the left instead of right */
+  font-size: 24px;
+  cursor: pointer;
+  color: black;
+  z-index: 1100;
+}
+
+.tips-page {
+  background: #8AB58A;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.back-button {
+  position: fixed;
+  top: 60px;
+  left: 20px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.cycle-card {
+  background: white;
+  padding: 20px;
+  border-radius: 24px;
+  margin-top: 80px;
+  text-align: center;
+}
+
+.cycle-card h2 {
+  color: #c0392b;
+  margin-bottom: 10px;
+}
+
+.cycle-card img {
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 20px;
+}
+
+.cycle-steps {
+  text-align: left;
+  list-style: none;
+  padding: 0;
+}
+
+.cycle-steps li {
+  margin-bottom: 10px;
+}
+
+.highlight {
+  color: #c0392b;
+  font-weight: bold;
+}

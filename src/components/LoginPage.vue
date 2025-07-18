@@ -14,7 +14,13 @@
         </div>
         <button class="btn-main" @click="goToWelcome">Sign In</button>
         <a href="#" class="forgot-link">Forgot password?</a>
-      </div>
+        </div>
+
+        <p class="signup-link">
+        Don't have an account? 
+        <span @click="goToSignup">Sign Up</span>
+        </p>
+
 
       <div class="social-buttons">
         <button class="btn-social">Continue with Apple</button>
@@ -28,10 +34,14 @@
 export default {
   name: "LoginPage",
   methods: {
-    goToWelcome() {
-      this.$router.push("/welcome");
-    },
+  goToWelcome() {
+    this.$router.push("/welcome");
   },
+  goToSignup() {
+    this.$router.push("/signup");
+  }
+}
+
 };
 </script>
 
