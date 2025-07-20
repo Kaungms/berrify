@@ -14,6 +14,7 @@ import Tips from './components/Tips.vue';
 import StrawberryCycle from './components/strawberry_cycle.vue';
 import StrawberryJam from './components/jam_receipe.vue';
 import SignupPage from './components/SignUp.vue';
+import Settings from './components/Setting.vue'
 
 
 
@@ -27,7 +28,8 @@ const routes = [
   { path: '/mydairy', name: 'MyDairy', component: MyDairy },
   { path: '/tips', name: 'Tips', component: Tips },
   { path: '/strawberry-cycle', name: 'StrawberryCycle', component: StrawberryCycle },
-  { path: '/strawberry-jam', name: 'StrawberryJam', component: StrawberryJam }
+  { path: '/strawberry-jam', name: 'StrawberryJam', component: StrawberryJam },
+  { path: '/setting', component: Settings}
 ]
 
 const router = createRouter({
@@ -42,5 +44,12 @@ import VueCal from 'vue-cal';
 import 'vue-cal/dist/vuecal.css';
 
 export default {
-  components: { VueCal }
+  components: { VueCal },
+  name: 'SettingsPage',
+  data() {
+    return {
+      autoWatering: true
+    };
+  }
 };
+

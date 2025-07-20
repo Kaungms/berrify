@@ -14,7 +14,7 @@
         <li @click="$router.push('/mydairy')">My Dairy</li>
         <li>Notifications</li>
         <li>Profile</li>
-        <li>Settings</li>
+        <li @click="$router.push('/setting')">Settings</li>
       </ul>
     </div>
 
