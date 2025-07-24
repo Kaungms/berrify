@@ -5,6 +5,24 @@
     </div>
 
     <h1>Welcome to Berrify</h1>
+    <h2>Tips</h2>
+    <carousel
+      :items-to-show="1"
+      :wrap-around="true"
+      :transition="500"
+      :navigation-enabled="true"
+    >
+      <slide>
+        <img src="/tips_banner.png" alt="Strawberry 1" class="carousel-img" />
+      </slide>
+      <slide>
+        <img src="/tips_banner.png" alt="Strawberry 2" class="carousel-img" />
+      </slide>
+      <slide>
+        <img src="/tips_banner.png" alt="Strawberry 3" class="carousel-img" />
+      </slide>
+    </carousel>
+
     <p>Choose how you want to analyze your strawberries</p>
 
     <div class="sidebar" :class="{ open: sidebarOpen }">
@@ -23,18 +41,25 @@
 </template>
 
 <script>
+import { Carousel, Slide } from "vue3-carousel";
+import "vue3-carousel/dist/carousel.css";
+
 export default {
   name: "Home",
+  components: {
+    Carousel,
+    Slide,
+  },
   data() {
     return {
-      sidebarOpen: false
+      sidebarOpen: false,
     };
   },
   methods: {
     toggleSidebar() {
       this.sidebarOpen = !this.sidebarOpen;
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -43,19 +68,19 @@ export default {
   position: relative;
   padding: 20px;
   min-height: 100vh;
-  background: #8AB58A;
+  background: #8ab58a;
   color: black;
 }
 
 .menu-bar {
-  position: absolute;
+  position: fixed;
   top: 10px;
-  right: 0;
+  left: 10px;
   font-size: 28px;
   cursor: pointer;
   color: black;
+  z-index: 1100;
 }
-
 
 .sidebar {
   position: fixed;
@@ -101,5 +126,13 @@ export default {
   height: 100%;
   background: rgba(0, 0, 0, 0.4);
   z-index: 500;
+}
+
+.carousel-img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+  max-height: 250px;
 }
 </style>
