@@ -20,13 +20,6 @@
         <span>Use your phone camera</span>
       </div>
 
-      <div class="option"
-      :class="{ selected: selectedOption === 'both' }"
-        @click="selectOption('both')">
-        <i class="fas fa-bolt"></i>
-        <strong>Both</strong>
-        <span>Combine hardware and phone</span>
-      </div>
     </div>
 
     <button class="btn-main" @click="goToNext">Continue</button>

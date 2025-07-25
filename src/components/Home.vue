@@ -23,8 +23,7 @@
       </slide>
     </carousel>
 
-    <p>Choose how you want to analyze your strawberries</p>
-
+    <!-- <p>Choose how you want to analyze your strawberries</p> -->
     <div class="sidebar" :class="{ open: sidebarOpen }">
       <ul>
         <li @click="$router.push('/')">Home</li>

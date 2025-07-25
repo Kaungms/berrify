@@ -33,7 +33,7 @@
         </div>
       </div>
 
-      <img src="/3.png" alt="Basket" class="basket-icon">
+      <img src="/basket.png" alt="Basket" class="basket-icon">
 
       <div class="dropdown-icon" @click="toggleExpand">
         <i :class="expanded ? 'fas fa-chevron-up' : 'fas fa-chevron-down'"></i>
@@ -48,6 +48,12 @@
     </transition>
   </div>
 </template>
+
+<style>
+h1{
+  left: 20px
+}
+</style>
 
 <script>
 import VueCal from 'vue-cal';

@@ -3,7 +3,6 @@ import App from './App.vue'
 import './style.css'
 import '@fortawesome/fontawesome-free/css/all.css';
 
-
 import { createRouter, createWebHistory } from 'vue-router'
 import WelcomePage from './components/WelcomePage.vue'
 import LoginPage from './components/LoginPage.vue'
@@ -37,7 +36,9 @@ const router = createRouter({
   routes
 })
 
-createApp(App).use(router).mount('#app')
+createApp(App)
+  .use(router)
+  .mount('#app')
 
 
 import VueCal from 'vue-cal';

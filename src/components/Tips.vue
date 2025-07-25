@@ -29,6 +29,12 @@ export default {
   padding: 20px;
 }
 
+/* .tips-page h1 {
+  text-align: left;
+  margin-left: 20px; 
+  margin-top: 20px;
+} */
+
 .back-button {
   position: fixed;
   top: 20px;

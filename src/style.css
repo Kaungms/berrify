@@ -20,7 +20,7 @@ body {
 }
 
 .signup-link span {
-  color: blue;
+  cologin-pager: blue;
   font-weight: bold;
   cursor: pointer;
 }
@@ -64,7 +64,8 @@ body {
 
 .form-group input {
   width: 90%;
-  padding: 8px 12px;  /* Adjusted padding: smaller vertical padding */
+  padding: 8px 12px;  
+  /* Adjusted padding: smaller vertical padding */
   border: 1px solid #ccc;
   border-radius: 10px;
   font-size: 1rem;
