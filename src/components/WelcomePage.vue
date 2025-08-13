@@ -10,17 +10,9 @@
 </template>
 
 <script>
+import "./WelcomePage.css";
+
 export default {
   name: "WelcomePage",
 };
 </script>
-
-<style>
-.berry-image {
-  width: 200px;   
-  height: auto;  
-  margin: 20px auto;
-  display: block;
-  box-shadow: 0 0 20px rgba(255, 150, 180, 0.25);
-}
-</style>

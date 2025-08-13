@@ -1,7 +1,7 @@
 <template>
   <div class="setting">
     <!-- Back Button -->
-    <div class="back-button" @click="$router.push('/home')">
+    <div class="back-button" @click="goHome">
       <i class="fas fa-arrow-left"></i>
     </div>
 
@@ -21,7 +21,7 @@
     <div class="setting-card">
       <span>Notifications</span>
       <label class="switch"> 
-      <input type="checkbox" v-model="Notifications">
+      <input type="checkbox" v-model="notifications">
       <span class="slider round"></span>
       </label>
     </div>
@@ -33,4 +33,17 @@
 
   </div>
 </template>
+
+<script setup>
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+
+const autoWatering = ref(false)
+const notifications = ref(false)
+const router = useRouter()
+
+function goHome() {
+  router.push('/home')
+}
+</script>
 

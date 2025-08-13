@@ -1,7 +1,7 @@
 
 <template>
   <div class="tips-page">
-    <div class="back-button" @click="$router.push('/')">
+    <div class="back-button" @click="$router.push('/home')">
       <i class="fas fa-arrow-left"></i>
     </div>
 
@@ -17,49 +17,9 @@
 
 
 <script>
+import "./Tips.css";
+
 export default {
   name: "Tips"
 };
 </script>
-
-<style scoped>
-.tips-page {
-  background: #8AB58A;
-  min-height: 100vh;
-  padding: 20px;
-}
-
-/* .tips-page h1 {
-  text-align: left;
-  margin-left: 20px; 
-  margin-top: 20px;
-} */
-
-.back-button {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  font-size: 24px;
-  cursor: pointer;
-}
-
-.tips-list {
-  list-style: none;
-  padding: 0;
-  margin-top: 80px;
-}
-
-.tips-list li {
-  margin-bottom: 20px;
-  font-weight: 600;
-  cursor: pointer;
-  background: white;
-  padding: 12px;
-  border-radius: 12px;
-  transition: background 0.2s ease;
-}
-
-.tips-list li:hover {
-  background: #e6e6e6;
-}
-</style>

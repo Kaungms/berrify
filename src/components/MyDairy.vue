@@ -49,15 +49,10 @@
   </div>
 </template>
 
-<style>
-h1{
-  left: 20px
-}
-</style>
-
 <script>
 import VueCal from 'vue-cal';
 import 'vue-cal/dist/vuecal.css';
+import "./MyDairy.css";
 
 export default {
   name: 'MyDairy',

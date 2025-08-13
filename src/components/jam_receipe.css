@@ -1,0 +1,41 @@
+/* Jam Recipe Component Styles */
+.jam-page {
+  background: #8AB58A;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.back-button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.jam-card {
+  background: white;
+  padding: 20px;
+  border-radius: 24px;
+  margin-top: 80px;
+  text-align: center;
+}
+
+.jam-card img {
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 20px;
+}
+
+.recipe-text {
+  text-align: left;
+}
+
+.recipe-text h2 {
+  margin-top: 20px;
+  color: #c0392b;
+}
+
+.recipe-text ul, .recipe-text ol {
+  padding-left: 20px;
+}
