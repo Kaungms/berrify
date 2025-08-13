@@ -14,6 +14,9 @@ import StrawberryCycle from './components/strawberry_cycle.vue';
 import StrawberryJam from './components/jam_receipe.vue';
 import SignupPage from './components/SignUp.vue';
 import Settings from './components/Setting.vue'
+import HardwareAnalysis from './components/HardwareAnalysis.vue'
+import ScannedPhoto from './components/ScannedPhoto.vue'
+import StrawberryRanking from './components/StrawberryRanking.vue'
 
 
 
@@ -28,7 +31,10 @@ const routes = [
   { path: '/tips', name: 'Tips', component: Tips },
   { path: '/strawberry-cycle', name: 'StrawberryCycle', component: StrawberryCycle },
   { path: '/strawberry-jam', name: 'StrawberryJam', component: StrawberryJam },
-  { path: '/setting', component: Settings}
+  { path: '/setting', component: Settings},
+  { path: '/hardware-analysis', name: 'HardwareAnalysis', component: HardwareAnalysis },
+  { path: '/scanned-photo', name: 'ScannedPhoto', component: ScannedPhoto },
+  { path: '/strawberry-ranking', name: 'StrawberryRanking', component: StrawberryRanking }
 ]
 
 const router = createRouter({
@@ -39,18 +45,4 @@ const router = createRouter({
 createApp(App)
   .use(router)
   .mount('#app')
-
-
-import VueCal from 'vue-cal';
-import 'vue-cal/dist/vuecal.css';
-
-export default {
-  components: { VueCal },
-  name: 'SettingsPage',
-  data() {
-    return {
-      autoWatering: true
-    };
-  }
-};
 

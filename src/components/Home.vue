@@ -25,15 +25,15 @@
         <i class="fas fa-home"></i>
       </div>
       <div class="nav-item" @click="$router.push('/tips')">
-        <i class="fas fa-leaf"></i>
+        <i class="fas fa-list"></i>
       </div>
       <div class="nav-item" @click="$router.push('/mydairy')">
-        <i class="fas fa-shopping-cart"></i>
-      </div>
-      <div class="nav-item">
-        <i class="fas fa-bell"></i>
+        <i class="fas fa-seedling"></i>
       </div>
       <div class="nav-item" @click="$router.push('/setting')">
+        <i class="fas fa-cog"></i>
+      </div>
+      <div class="nav-item" @click="$router.push('/hardware-analysis')">
         <i class="fas fa-user"></i>
       </div>
     </div>

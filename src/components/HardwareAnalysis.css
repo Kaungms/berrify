@@ -1,0 +1,108 @@
+/* Hardware Analysis Component Styles */
+.hardware-analysis {
+  min-height: 100vh;
+  background: #8ab58a;
+  padding: 20px;
+  color: black;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.back-button {
+  position: absolute;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.back-button:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.back-button i {
+  font-size: 18px;
+  color: black;
+}
+
+.header h1 {
+  flex: 1;
+  text-align: center;
+  margin: 0;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.device-card {
+  background: white;
+  border-radius: 20px;
+  padding: 40px 30px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  margin-top: 60px;
+}
+
+.device-icon {
+  margin-bottom: 20px;
+}
+
+.device-icon i {
+  font-size: 48px;
+  color: #333;
+}
+
+.device-card h2 {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: black;
+}
+
+.connection-status h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: black;
+}
+
+.connection-status p {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 40px;
+  line-height: 1.4;
+}
+
+.scan-button {
+  background: #f5e9d8;
+  border: none;
+  border-radius: 12px;
+  padding: 15px 60px;
+  font-size: 18px;
+  font-weight: bold;
+  color: black;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  max-width: 200px;
+}
+
+.scan-button:hover {
+  background: #f0e0c8;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.scan-button:active {
+  transform: translateY(0);
+}
