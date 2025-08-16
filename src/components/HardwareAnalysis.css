@@ -1,9 +1,9 @@
 /* Hardware Analysis Component Styles */
-.hardware-analysis {
+.profile-page {
   min-height: 100vh;
-  background: #8ab58a;
-  padding: 20px;
-  color: black;
+  background: linear-gradient(135deg, #8AB58A 0%, #A8D4A8 100%);
+  padding: 24px;
+  color: white;
 }
 
 .header {
@@ -13,35 +13,17 @@
   position: relative;
 }
 
+/* Position back button */
 .back-button {
-  position: absolute;
-  left: 0;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.back-button:hover {
-  background: rgba(0, 0, 0, 0.2);
-}
-
-.back-button i {
-  font-size: 18px;
-  color: black;
+  margin-right: 20px;
 }
 
 .header h1 {
-  flex: 1;
-  text-align: center;
+  color: white;
   margin: 0;
-  font-size: 24px;
-  font-weight: bold;
+  font-size: 28px;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .device-card {
@@ -95,14 +77,97 @@
   transition: all 0.3s ease;
   width: 100%;
   max-width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 0 auto;
 }
 
-.scan-button:hover {
+.scan-button:hover:not(:disabled) {
   background: #f0e0c8;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .scan-button:active {
+  transform: translateY(0);
+}
+
+.scan-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.scan-done {
+  color: #4CAF50 !important;
+  font-weight: 700 !important;
+}
+
+.thank-you-message {
+  color: #4CAF50 !important;
+  font-weight: 600 !important;
+  font-size: 16px !important;
+  text-align: center;
+  line-height: 1.5 !important;
+}
+
+.view-results-button {
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  border: none;
+  border-radius: 12px;
+  padding: 15px 60px;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  max-width: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 0 auto;
+  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+}
+
+.view-results-button:hover {
+  background: linear-gradient(135deg, #45a049 0%, #3d8b40 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+}
+
+.view-results-button:active {
+  transform: translateY(0);
+}
+
+.back-to-diary-button {
+  background: linear-gradient(135deg, #666 0%, #555 100%);
+  border: none;
+  border-radius: 12px;
+  padding: 15px 60px;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+  max-width: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 0 auto;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.back-to-diary-button:hover {
+  background: linear-gradient(135deg, #555 0%, #444 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.back-to-diary-button:active {
   transform: translateY(0);
 }

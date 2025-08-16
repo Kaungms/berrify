@@ -19,7 +19,7 @@
             />
           </div>
           <button class="btn-main" @click="handleLogin">Sign In</button>
-          <a href="#" class="forgot-link">Forgot password?</a>
+          <a href="#" class="forgot-link" @click="goToForgotPassword">Forgot password?</a>
         </div>
 
         <p class="signup-link">
@@ -70,6 +70,9 @@ export default {
     },
     goToSignup() {
       this.$router.push("/signup");
+    },
+    goToForgotPassword() {
+      this.$router.push("/forgot-password");
     },
   },
 };

@@ -1,11 +1,11 @@
 /* Home Component Styles */
 .home {
   position: relative;
-  padding: 20px;
-  padding-bottom: 80px; /* Add space for bottom navigation */
+  padding: 24px;
+  padding-bottom: 100px;
   min-height: 100vh;
-  background: #8ab58a;
-  color: black;
+  background: linear-gradient(135deg, #8AB58A 0%, #A8D4A8 100%);
+  color: white;
 }
 
 /* Bottom Icon Navigation */
@@ -14,54 +14,105 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 60px;
+  height: 80px;
   background: white;
   display: flex;
   justify-content: space-around;
   align-items: center;
-  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
   z-index: 1000;
+  border-radius: 24px 24px 0 0;
 }
 
 .nav-item {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 50px;
-  height: 50px;
+  width: 56px;
+  height: 56px;
   cursor: pointer;
   transition: all 0.3s ease;
-  border-radius: 25px;
+  border-radius: 16px;
+  position: relative;
 }
 
 .nav-item:hover {
-  background: #f0f0f0;
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  transform: translateY(-4px);
+  box-shadow: 0 6px 20px rgba(76, 175, 80, 0.3);
+}
+
+.nav-item:hover i {
+  color: white;
   transform: scale(1.1);
 }
 
 .nav-item i {
-  font-size: 20px;
+  font-size: 22px;
   color: #333;
+  transition: all 0.3s ease;
 }
 
 /* Carousel Styles */
 .carousel {
-  margin: 20px 0;
-  border-radius: 12px;
+  margin: 30px 0;
+  border-radius: 20px;
   overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .carousel__viewport {
-  border-radius: 12px;
+  border-radius: 20px;
 }
 
 .carousel__slide {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 200px;
-  background: #f5f5f5;
-  border-radius: 12px;
+  min-height: 220px;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel__slide::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(76, 175, 80, 0.1) 0%, rgba(165, 214, 167, 0.1) 100%);
+}
+
+/* Card Styles */
+.card {
+  background: white;
+  border-radius: 20px;
+  padding: 24px;
+  margin: 16px 0;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+}
+
+.card h3 {
+  color: #333;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.card p {
+  color: #666;
+  line-height: 1.6;
+  margin: 0;
 }
 
 .carousel-img {

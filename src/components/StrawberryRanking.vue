@@ -10,7 +10,8 @@
 
     <!-- Ranking Info -->
     <div class="ranking-info">
-      <p>Top {{ selectedCount }} of {{ detectedCount }} strawberries ranked by quality</p>
+      <p>We detected <strong>{{ detectedCount }} strawberries</strong> in your latest scan</p>
+      <p>Here are the top <strong>{{ selectedCount }}</strong> highest quality strawberries to keep for growing:</p>
     </div>
 
     <!-- Ranking List -->
@@ -67,24 +68,33 @@ export default {
     };
   },
   mounted() {
-    this.getRouteParams();
+    this.loadDetectionData();
     this.generateRanking();
   },
   methods: {
-    getRouteParams() {
-      this.detectedCount = parseInt(this.$route.query.detected) || 4;
-      this.selectedCount = parseInt(this.$route.query.selected) || 1;
+    loadDetectionData() {
+      // Get data from route query parameters
+      this.detectedCount = parseInt(this.$route.query.detected) || parseInt(localStorage.getItem('detectedStrawberries')) || 8;
+      this.selectedCount = parseInt(this.$route.query.selected) || parseInt(localStorage.getItem('strawberriesToKeep')) || 3;
+      
+      console.log(`Detected: ${this.detectedCount}, Selected: ${this.selectedCount}`);
     },
     generateRanking() {
-      // Generate mock ranking data
+      // Generate ranking data based on selected count
       const mockStrawberries = [
         { score: 95, ripeness: "Perfect Ripe", size: "Large", color: "#4CAF50", image: "/strawberries.png" },
+        { score: 92, ripeness: "Excellent", size: "Large", color: "#4CAF50", image: "/strawberries.png" },
         { score: 87, ripeness: "Nearly Ripe", size: "Medium", color: "#8BC34A", image: "/strawberries.png" },
+        { score: 84, ripeness: "Very Good", size: "Medium", color: "#8BC34A", image: "/strawberries.png" },
         { score: 82, ripeness: "Good", size: "Medium", color: "#CDDC39", image: "/strawberries.png" },
+        { score: 78, ripeness: "Good", size: "Medium", color: "#CDDC39", image: "/strawberries.png" },
         { score: 75, ripeness: "Fair", size: "Small", color: "#FFC107", image: "/strawberries.png" },
-        { score: 68, ripeness: "Needs Time", size: "Small", color: "#FF9800", image: "/strawberries.png" }
+        { score: 72, ripeness: "Fair", size: "Small", color: "#FFC107", image: "/strawberries.png" },
+        { score: 68, ripeness: "Needs Time", size: "Small", color: "#FF9800", image: "/strawberries.png" },
+        { score: 65, ripeness: "Needs Time", size: "Small", color: "#FF9800", image: "/strawberries.png" }
       ];
 
+      // Select top strawberries based on selectedCount
       this.rankedStrawberries = mockStrawberries.slice(0, this.selectedCount);
     },
     saveToMyDiary() {

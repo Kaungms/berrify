@@ -1,8 +1,52 @@
 /* WelcomePage Component Styles */
+.welcome-screen {
+  text-align: center;
+  padding: 40px 24px;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #8AB58A 0%, #A8D4A8 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.welcome-screen h1 {
+  color: white;
+  font-size: 32px;
+  font-weight: 800;
+  margin-bottom: 16px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  letter-spacing: 1px;
+}
+
+.welcome-screen p {
+  color: white;
+  font-size: 18px;
+  margin-bottom: 40px;
+  opacity: 0.9;
+  font-weight: 500;
+}
+
 .berry-image {
-  width: 200px;   
+  width: 240px;   
   height: auto;  
-  margin: 20px auto;
+  margin: 30px auto 40px;
   display: block;
-  box-shadow: 0 0 20px rgba(255, 150, 180, 0.25);
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.berry-image:hover {
+  transform: scale(1.05);
+}
+
+.description {
+  max-width: 320px;
+  margin: 0 auto 40px;
+  color: white;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.6;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }

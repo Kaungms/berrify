@@ -1,53 +1,35 @@
 /* Scanned Photo Component Styles */
 .scanned-photo {
   min-height: 100vh;
-  background: #8ab58a;
-  padding: 20px;
-  color: black;
+  background: linear-gradient(135deg, #8AB58A 0%, #A8D4A8 100%);
+  padding: 24px;
+  color: white;
 }
 
 .header {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   position: relative;
 }
 
+/* Position back button */
 .back-button {
-  position: absolute;
-  left: 0;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.back-button:hover {
-  background: rgba(0, 0, 0, 0.2);
-}
-
-.back-button i {
-  font-size: 18px;
-  color: black;
+  margin-right: 20px;
 }
 
 .header h1 {
-  flex: 1;
-  text-align: center;
+  color: white;
   margin: 0;
-  font-size: 24px;
-  font-weight: bold;
+  font-size: 28px;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .timestamp {
   text-align: center;
   font-size: 16px;
-  color: #333;
+  color: rgba(255, 255, 255, 0.9);
   margin-bottom: 30px;
 }
 

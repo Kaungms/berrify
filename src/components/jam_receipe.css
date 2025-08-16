@@ -1,4 +1,27 @@
-/* Jam Recipe Component Styles */
+/* Strawberry Jam Recipe Component Styles */
+.strawberry-jam {
+  background: linear-gradient(135deg, #8AB58A 0%, #A8D4A8 100%);
+  min-height: 100vh;
+  padding: 24px;
+  padding-top: 80px;
+}
+
+.strawberry-jam h1 {
+  color: white;
+  font-size: 32px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 30px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Position back button */
+.back-button {
+  position: fixed;
+  top: 24px;
+  left: 24px;
+  z-index: 100;
+}
 .jam-page {
   background: #8AB58A;
   min-height: 100vh;

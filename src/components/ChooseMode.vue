@@ -1,50 +1,17 @@
 <template>
-  <div class="choose-mode">
+  <div class="welcome">
     <h1>Welcome to Berrify</h1>
-    <p>Choose how you want to analyze your strawberries</p>
-
-    <div class="option-card">
-      <div class="option"
-      :class="{ selected: selectedOption === 'hardware' }"
-        @click="selectOption('hardware')">
-        <i class="fas fa-microchip"></i>
-        <strong>Hardware </strong>
-        <span>Use Specialized hardware device</span>
-      </div>
-
-      <div class="option"
-      :class="{ selected: selectedOption === 'phone' }"
-        @click="selectOption('phone')">
-        <i class="fas fa-camera"></i> 
-        <strong>Phone </strong>
-        <span>Use your phone camera</span>
-      </div>
-
-    </div>
-
-    <button class="btn-main" @click="goToNext">Continue</button>
+    <p>Your strawberry tracking companion</p>
+    <button class="btn-main" @click="goToHome">Get Started</button>
   </div>
 </template>
 
 <script>
 export default {
-  name: "ChooseMode",
-  data() {
-    return {
-      selectedOption: null
-    };
-  },
+  name: "WelcomePage",
   methods: {
-    selectOption(option) {
-      this.selectedOption = option;
-    },
-    goToNext() {
-      if (this.selectedOption) {
-        console.log("Selected option:", this.selectedOption);
-        this.$router.push("/home"); // Update as needed
-      } else {
-        alert("Please select an option first.");
-      }
+    goToHome() {
+      this.$router.push("/home");
     }
   }
 };
