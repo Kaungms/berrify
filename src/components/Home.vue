@@ -33,7 +33,7 @@
       <div class="nav-item" @click="$router.push('/setting')">
         <i class="fas fa-cog"></i>
       </div>
-      <div class="nav-item" @click="$router.push('/hardware-analysis')">
+      <div class="nav-item" @click="$router.push('/profile')">
         <i class="fas fa-user"></i>
       </div>
     </div>

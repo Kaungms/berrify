@@ -55,14 +55,16 @@ export default {
   name: "ScannedPhoto",
   data() {
     return {
-      detectedCount: 4, // This would come from actual scan results
+      detectedCount: 4, // Default value, will be updated from query params
       selectedCount: 1,
       currentDate: "",
-      currentTime: ""
+      currentTime: "",
+      plantName: "Strawberry Plant" // Default name, will be updated from query params
     };
   },
   mounted() {
     this.setCurrentDateTime();
+    this.loadDetectionData();
   },
   methods: {
     setCurrentDateTime() {
@@ -72,6 +74,28 @@ export default {
         hour: '2-digit', 
         minute: '2-digit' 
       });
+    },
+    loadDetectionData() {
+      // Get data from query parameters
+      if (this.$route.query.detected) {
+        this.detectedCount = parseInt(this.$route.query.detected);
+      } else {
+        // Fallback to localStorage
+        const storedCount = localStorage.getItem('detectedStrawberries');
+        if (storedCount) {
+          this.detectedCount = parseInt(storedCount);
+        }
+      }
+      
+      // Get plant name
+      if (this.$route.query.plantName) {
+        this.plantName = this.$route.query.plantName;
+      } else {
+        const storedName = localStorage.getItem('currentPlantName');
+        if (storedName) {
+          this.plantName = storedName;
+        }
+      }
     },
     decreaseCount() {
       if (this.selectedCount > 1) {
@@ -84,12 +108,17 @@ export default {
       }
     },
     proceedToRanking() {
+      // Store the selected count for the ranking page
+      localStorage.setItem('strawberriesToKeep', this.selectedCount);
+      localStorage.setItem('detectedStrawberries', this.detectedCount);
+      
       // Navigate to ranking page with selected count
       this.$router.push({
         path: '/strawberry-ranking',
         query: {
           detected: this.detectedCount,
-          selected: this.selectedCount
+          selected: this.selectedCount,
+          plantName: this.plantName
         }
       });
     }
