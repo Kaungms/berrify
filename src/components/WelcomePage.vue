@@ -5,7 +5,7 @@
     <p class="description">
       “Its time to get your plants settled in and ready to grow strong and healthy.”
     </p>
-    <button class="btn-main" @click="$router.push('/choose-mode')">Get Started</button>
+    <button class="btn-main" @click="$router.push('/home')">Get Started</button>
   </div>
 </template>
 
