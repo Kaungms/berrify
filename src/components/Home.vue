@@ -1,40 +1,79 @@
 <template>
   <div class="home">
-    <h1>Welcome to Berrify</h1>
-    <h2>Tips</h2>
-    <carousel
-      :items-to-show="1"
-      :wrap-around="true"
-      :transition="500"
-      :navigation-enabled="true"
-    >
-      <slide>
-        <img src="/tips_banner.png" alt="Strawberry 1" class="carousel-img" />
-      </slide>
-      <slide>
-        <img src="/tips_banner.png" alt="Strawberry 2" class="carousel-img" />
-      </slide>
-      <slide>
-        <img src="/tips_banner.png" alt="Strawberry 3" class="carousel-img" />
-      </slide>
-    </carousel>
+    <div class="page-container">
+      <!-- <h1>Welcome to Berrify</h1>
+      <h2>Tips</h2> -->
+      <!-- <carousel> -->
+      <carousel
+        :items-to-show="1"
+        :wrap-around="true"
+        :transition="500"
+        :navigation-enabled="true"
+      >
+        <slide v-for="(item, index) in banners" :key="index">
+          <img :src="item.image" :alt="item.label" class="carousel-img" />
+        </slide>
+      </carousel>
 
-    <!-- Bottom Icon Navigation -->
-    <div class="icon-nav">
-      <div class="nav-item" @click="$router.push('/home')">
-        <i class="fas fa-home"></i>
+      <!-- Scrollable Cards -->
+      <h1>Tips</h1>
+
+      <div class="scroll-container">
+        <div class="scroll-card" v-for="item in cards" :key="item.label">
+          <img :src="item.image" :alt="item.label" />
+          <p>{{ item.label }}</p>
+        </div>
       </div>
-      <div class="nav-item" @click="$router.push('/tips')">
-        <i class="fas fa-list"></i>
+
+      <!-- My Strawberry -->
+      <h1>My Strawberry</h1>
+
+      <div class="strawberry-container">
+        <div
+          class="strawberry-card"
+          v-for="item in strawberries"
+          :key="item.label"
+        >
+          <img :src="item.image" :alt="item.label" />
+          <p>{{ item.label }}</p>
+        </div>
       </div>
-      <div class="nav-item" @click="$router.push('/mydairy')">
-        <i class="fas fa-seedling"></i>
-      </div>
-      <div class="nav-item" @click="$router.push('/setting')">
-        <i class="fas fa-cog"></i>
-      </div>
-      <div class="nav-item" @click="$router.push('/profile')">
-        <i class="fas fa-user"></i>
+
+      <!-- Bottom Icon Navigation -->
+      <div class="icon-nav">
+        <div class="nav-item" @click="$router.push('/home')">
+          <i class="fas fa-home"></i>
+        </div>
+        <div class="nav-item" @click="$router.push('/tips')">
+          <i class="fas fa-list"></i>
+        </div>
+        <div class="nav-item" @click="$router.push('/mydairy')">
+          <i class="fas fa-seedling"></i>
+        </div>
+        <div class="nav-item" @click="$router.push('/setting')">
+          <i class="fas fa-cog"></i>
+        </div>
+        <div class="nav-item" @click="$router.push('/profile')">
+          <i class="fas fa-user"></i>
+        </div>
+        <!-- Bottom Icon Navigation -->
+        <div class="icon-nav">
+          <div class="nav-item" @click="$router.push('/home')">
+            <i class="fas fa-home"></i>
+          </div>
+          <div class="nav-item" @click="$router.push('/tips')">
+            <i class="fas fa-list"></i>
+          </div>
+          <div class="nav-item" @click="$router.push('/mydairy')">
+            <i class="fas fa-seedling"></i>
+          </div>
+          <div class="nav-item" @click="$router.push('/setting')">
+            <i class="fas fa-cog"></i>
+          </div>
+          <div class="nav-item" @click="$router.push('/profile')">
+            <i class="fas fa-user"></i>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -50,6 +89,32 @@ export default {
   components: {
     Carousel,
     Slide,
+  },
+  data() {
+    return {
+      // items for the carousel
+      banners: [
+        { image: "/tips_banner.png", label: "Strawberry 1" },
+        { image: "/tips_banner.png", label: "Strawberry 2" },
+        { image: "/tips_banner.png", label: "Strawberry 3" },
+      ],
+      // items for the scrollable cards
+      cards: [
+        { label: "Harvest", image: "/strawberries.png" },
+        { label: "Recipe", image: "/strawberries.png" },
+        { label: "Storage", image: "/strawberries.png" },
+        { label: "Caring", image: "/strawberries.png" },
+        { label: "Watering", image: "/strawberries.png" },
+        { label: "Watering", image: "/strawberries.png" },
+      ],
+      strawberries: [
+        { label: "Strawberry 1", image: "/strawberries.png" },
+        { label: "Strawberry 2", image: "/strawberries.png" },
+        { label: "Strawberry 3", image: "/strawberries.png" },
+        { label: "Strawberry 4", image: "/strawberries.png" },
+        { label: "Strawberry 5", image: "/strawberries.png" },
+      ],
+    };
   },
 };
 </script>
