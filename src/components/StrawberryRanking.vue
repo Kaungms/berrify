@@ -100,7 +100,7 @@ export default {
     saveToMyDiary() {
       // Add logic to save to diary
       alert(`Saved top ${this.selectedCount} strawberries to My Diary!`);
-      this.$router.push('/mydairy');
+      this.$router.push('/my-diary');
     }
   }
 };

@@ -1,0 +1,378 @@
+/* PlantScan.css */
+
+.page-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8fbf1 0%, #e8f5e8 100%);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.back-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 45px;
+  height: 45px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.back-button:hover {
+  background: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.back-button i {
+  color: #4a90e2;
+  font-size: 18px;
+}
+
+.page-header {
+  padding: 80px 20px 30px;
+  text-align: center;
+}
+
+.page-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #2c3e50;
+  margin: 0 0 10px 0;
+}
+
+.page-subtitle {
+  font-size: 16px;
+  color: #7f8c8d;
+  margin: 0;
+}
+
+.page-content {
+  flex: 1;
+  padding: 20px;
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Upload Section */
+.upload-section {
+  margin-bottom: 30px;
+}
+
+.upload-area {
+  border: 3px dashed #bdc3c7;
+  border-radius: 20px;
+  padding: 40px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: rgba(255, 255, 255, 0.8);
+  min-height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.upload-area:hover {
+  border-color: #4a90e2;
+  background: rgba(255, 255, 255, 0.95);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.upload-area.drag-over {
+  border-color: #4a90e2;
+  background: rgba(74, 144, 226, 0.1);
+  transform: scale(1.02);
+}
+
+.upload-area.has-image {
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+
+.upload-content {
+  width: 100%;
+}
+
+.upload-icon {
+  margin-bottom: 20px;
+}
+
+.upload-icon i {
+  font-size: 48px;
+  color: #4a90e2;
+}
+
+.upload-content h3 {
+  font-size: 22px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 0 0 10px 0;
+}
+
+.upload-content p {
+  font-size: 16px;
+  color: #7f8c8d;
+  margin: 0 0 20px 0;
+}
+
+.supported-formats {
+  background: rgba(74, 144, 226, 0.1);
+  border-radius: 20px;
+  padding: 8px 16px;
+  display: inline-block;
+}
+
+.supported-formats span {
+  font-size: 12px;
+  color: #4a90e2;
+  font-weight: 500;
+}
+
+/* Image Preview */
+.image-preview {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.image-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.image-preview:hover .image-overlay {
+  opacity: 1;
+}
+
+.change-photo-btn {
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 12px;
+  padding: 12px 20px;
+  font-weight: 600;
+  color: #2c3e50;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px;
+}
+
+.change-photo-btn:hover {
+  background: #ffffff;
+  transform: translateY(-2px);
+}
+
+.change-photo-btn i {
+  margin-right: 8px;
+}
+
+/* Analysis Section */
+.analysis-section {
+  margin-bottom: 30px;
+}
+
+.analysis-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  border-left: 4px solid #4a90e2;
+}
+
+.analysis-card h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 0 0 20px 0;
+  display: flex;
+  align-items: center;
+}
+
+.analysis-card h3 i {
+  margin-right: 10px;
+  color: #4a90e2;
+}
+
+.analysis-progress {
+  margin-bottom: 20px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: #ecf0f1;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4a90e2, #357abd);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.progress-text {
+  font-size: 14px;
+  color: #7f8c8d;
+  font-weight: 500;
+}
+
+.analysis-results {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.result-item {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  background: rgba(74, 144, 226, 0.1);
+  border-radius: 12px;
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.result-item i {
+  margin-right: 12px;
+  color: #4a90e2;
+  width: 20px;
+  text-align: center;
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: auto;
+  padding-top: 20px;
+}
+
+.btn-secondary,
+.btn-primary {
+  flex: 1;
+  padding: 15px 20px;
+  border: none;
+  border-radius: 15px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-secondary {
+  background: rgba(127, 140, 141, 0.1);
+  color: #7f8c8d;
+}
+
+.btn-secondary:hover {
+  background: rgba(127, 140, 141, 0.2);
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #4a90e2, #357abd);
+  color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(74, 144, 226, 0.3);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .page-content {
+    padding: 15px;
+  }
+  
+  .upload-area {
+    padding: 30px 15px;
+    min-height: 200px;
+  }
+  
+  .upload-icon i {
+    font-size: 36px;
+  }
+  
+  .upload-content h3 {
+    font-size: 18px;
+  }
+  
+  .image-preview {
+    height: 250px;
+  }
+  
+  .analysis-card {
+    padding: 20px;
+  }
+  
+  .action-buttons {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-title {
+    font-size: 24px;
+  }
+  
+  .upload-area {
+    padding: 25px 10px;
+    min-height: 180px;
+  }
+  
+  .upload-content h3 {
+    font-size: 16px;
+  }
+  
+  .upload-content p {
+    font-size: 14px;
+  }
+  
+  .image-preview {
+    height: 200px;
+  }
+}

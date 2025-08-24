@@ -79,7 +79,27 @@
         <!-- Expanded Image for This Plant (appears directly below the card) -->
         <transition name="fade">
           <div v-if="plant.expanded" class="plant-photo-container">
-            <img src="/strawberry_pot.png" alt="Strawberry plant" class="plant-photo">
+            <!-- Show plant's custom photo if available, otherwise default image -->
+            <img 
+              v-if="plant.photo" 
+              :src="plant.photo" 
+              :alt="plant.name" 
+              class="plant-photo custom-photo"
+            />
+            <img 
+              v-else 
+              src="/strawberry_pot.png" 
+              :alt="plant.name" 
+              class="plant-photo default-photo"
+            />
+            
+            <!-- Photo info for custom photos -->
+            <div v-if="plant.photo" class="photo-info-overlay">
+              <span class="photo-label">
+                <i class="fas fa-camera"></i>
+                Custom Photo
+              </span>
+            </div>
           </div>
         </transition>
       </div>
@@ -90,6 +110,18 @@
           <i class="fas fa-plus"></i>
           Add Another Plant
         </button>
+      </div>
+
+      <!-- Test Notification Buttons (for demonstration) -->
+      <div class="test-notifications" style="margin: 20px 0; padding: 20px; background: #f5f5f5; border-radius: 12px;">
+        <h3 style="margin-bottom: 12px; color: #333;">Test Notifications:</h3>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+          <button @click="testNotifications.success()" style="padding: 8px 16px; background: #4CAF50; color: white; border: none; border-radius: 6px; cursor: pointer;">Success</button>
+          <button @click="testNotifications.error()" style="padding: 8px 16px; background: #f44336; color: white; border: none; border-radius: 6px; cursor: pointer;">Error</button>
+          <button @click="testNotifications.warning()" style="padding: 8px 16px; background: #ff9800; color: white; border: none; border-radius: 6px; cursor: pointer;">Warning</button>
+          <button @click="testNotifications.info()" style="padding: 8px 16px; background: #2196F3; color: white; border: none; border-radius: 6px; cursor: pointer;">Info</button>
+          <button @click="testNotifications.plant()" style="padding: 8px 16px; background: #9C27B0; color: white; border: none; border-radius: 6px; cursor: pointer;">Plant Alert</button>
+        </div>
       </div>
 
       <!-- Choose Mode Modal -->
@@ -162,6 +194,7 @@
 import VueCal from 'vue-cal';
 import 'vue-cal/dist/vuecal.css';
 import "./MyDairy.css";
+import { notify } from '../services/NotificationService';
 
 export default {
   name: 'MyDairy',
@@ -199,8 +232,35 @@ export default {
   mounted() {
     this.loadPlants();
     this.loadDefaultPlant();
+    this.checkForNewPlantWithPhoto();
   },
   methods: {
+    checkForNewPlantWithPhoto() {
+      // Check if returning from photo upload
+      if (this.$route.query.addPlantWithPhoto === 'true') {
+        const plantDataString = localStorage.getItem('newPlantWithPhoto');
+        if (plantDataString) {
+          try {
+            const plantData = JSON.parse(plantDataString);
+            this.addPlant(plantData.name, plantData.mode, plantData);
+            
+            // Clean up
+            localStorage.removeItem('newPlantWithPhoto');
+            localStorage.removeItem('newPlantName');
+            localStorage.removeItem('newPlantMode');
+            
+            // Show success notification
+            notify.plantAdded(plantData.name);
+            
+            // Remove query parameter
+            this.$router.replace('/my-diary');
+          } catch (error) {
+            console.error('Error processing plant with photo:', error);
+            notify.error('Failed to add plant. Please try again.');
+          }
+        }
+      }
+    },
     loadPlants() {
       const savedPlants = localStorage.getItem('myDairyPlants');
       if (savedPlants) {
@@ -260,10 +320,32 @@ export default {
       if (!this.selectedMode) return;
       
       const finalName = this.newPlantName.trim() || this.defaultPlantName;
-      this.addPlant(finalName, this.selectedMode);
-      this.closeChooseMode();
+      
+      if (this.selectedMode === 'phone') {
+        // For phone mode, redirect to photo upload page
+        localStorage.setItem('newPlantName', finalName);
+        localStorage.setItem('newPlantMode', this.selectedMode);
+        
+        this.closeChooseMode();
+        
+        // Navigate to photo upload page
+        this.$router.push({
+          path: '/add-plant-photo',
+          query: {
+            plantName: finalName,
+            mode: this.selectedMode
+          }
+        });
+      } else {
+        // For hardware mode, proceed with current flow
+        this.addPlant(finalName, this.selectedMode);
+        this.closeChooseMode();
+        
+        // Show success notification
+        notify.plantAdded(finalName);
+      }
     },
-    addPlant(name, mode) {
+    addPlant(name, mode, photoData = null) {
       if (!name || !mode) return;
       
       // Create tracking description based on mode
@@ -288,7 +370,10 @@ export default {
         statusAlert: 'Scan to check status',
         moisture: mode === 'hardware' ? Math.floor(Math.random() * 30) + 50 : null, // Random moisture for hardware
         expanded: false,
-        dateAdded: new Date().toISOString()
+        dateAdded: new Date().toISOString(),
+        photo: photoData ? photoData.photo : null,
+        photoName: photoData ? photoData.photoName : null,
+        photoSize: photoData ? photoData.photoSize : null
       };
       
       this.plants.push(newPlant);
@@ -309,6 +394,9 @@ export default {
         this.updateNextPlantNumber();
         this.savePlants();
         console.log(`Removed plant: ${plant.name}`);
+        
+        // Show notification
+        notify.info(`${plant.name} has been removed from your garden.`);
       }
     },
     toggleExpandPlant(plantId) {
@@ -340,9 +428,14 @@ export default {
         // For hardware mode, go to hardware analysis
         this.$router.push('/hardware-analysis');
       } else {
-        // For phone mode, you could navigate to a camera capture interface
-        // For now, using the same hardware analysis page
-        this.$router.push('/hardware-analysis');
+        // For phone camera mode, go to plant scan with photo upload
+        this.$router.push({
+          path: '/plant-scan',
+          query: {
+            plantName: plant.name,
+            plantId: plant.isDefault ? 'default' : plant.id
+          }
+        });
       }
     },
     harvestPlant(plant) {
@@ -405,7 +498,13 @@ export default {
           this.savePlants();
         }
         
-        alert(`Soil Moisture Updated!\n\n${plant.name}\nCurrent soil moisture: ${newMoisture}%\n\n${newMoisture >= 70 ? '✅ Optimal moisture level' : newMoisture >= 50 ? '⚠️ Consider watering soon' : '🚨 Watering needed immediately'}`);
+        // Replace alert with notification
+        notify.moistureUpdated(plant.name, newMoisture);
+        
+        // Check if watering is needed
+        if (newMoisture < 50) {
+          notify.plantWatering(plant.name);
+        }
       } else {
         // For phone mode, prompt for manual entry or use sensor if available
         const moistureReading = prompt(`Manual Soil Moisture Entry for ${plant.name}\n\nEnter the soil moisture percentage (0-100):`);
@@ -420,10 +519,37 @@ export default {
             this.savePlants();
           }
           
-          alert(`Soil Moisture Recorded!\n\n${plant.name}\nSoil moisture: ${moisture}%\n\n${moisture >= 70 ? '✅ Optimal moisture level' : moisture >= 50 ? '⚠️ Consider watering soon' : '🚨 Watering needed immediately'}`);
+          // Replace alert with notification
+          notify.moistureUpdated(plant.name, moisture);
+          
+          // Check if watering is needed
+          if (moisture < 50) {
+            notify.plantWatering(plant.name);
+          }
         } else if (moistureReading !== null) {
           alert('Please enter a valid number between 0 and 100.');
         }
+      }
+    },
+    
+    // Test notification methods
+    testNotifications: {
+      success() {
+        notify.success('🎉 This is a success notification!');
+      },
+      error() {
+        notify.error('❌ This is an error notification!');
+      },
+      warning() {
+        notify.warning('⚠️ This is a warning notification!');
+      },
+      info() {
+        notify.info('ℹ️ This is an info notification!');
+      },
+      plant() {
+        notify.plantReady('Test Plant');
+        setTimeout(() => notify.scanComplete('Test Plant', 7), 1000);
+        setTimeout(() => notify.harvestSuccess('Test Plant', 5), 2000);
       }
     }
   }

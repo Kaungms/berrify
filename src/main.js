@@ -19,6 +19,8 @@ import HardwareAnalysis from "./components/HardwareAnalysis.vue";
 import ScannedPhoto from "./components/ScannedPhoto.vue";
 import StrawberryRanking from "./components/StrawberryRanking.vue";
 import Profile from "./components/Profile.vue";
+import AddPlantPhoto from "./components/AddPlantPhoto.vue";
+import PlantScan from "./components/PlantScan.vue";
 // import ProfilePage from "./components/ProfilePage.vue";
 
 const routes = [
@@ -28,7 +30,7 @@ const routes = [
   { path: "/welcome", component: WelcomePage },
   { path: "/choose-mode", component: ChooseMode },
   { path: "/home", component: Home },
-  { path: "/mydairy", name: "MyDairy", component: MyDairy },
+  { path: "/my-diary", name: "MyDairy", component: MyDairy },
   { path: "/tips", name: "Tips", component: Tips },
   {
     path: "/strawberry-cycle",
@@ -48,6 +50,16 @@ const routes = [
     path: "/strawberry-ranking",
     name: "StrawberryRanking",
     component: StrawberryRanking,
+  },
+  {
+    path: "/add-plant-photo",
+    name: "AddPlantPhoto",
+    component: AddPlantPhoto,
+  },
+  {
+    path: "/plant-scan",
+    name: "PlantScan",
+    component: PlantScan,
   },
 ];
 
