@@ -116,9 +116,9 @@
         <i class="fas fa-user"></i>
       </div>
     </div>
+
   </div>
 </template>
-
 <script>
 import "./Profile.css";
 
