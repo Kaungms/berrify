@@ -65,7 +65,7 @@ export default {
     backToDiary() {
       // Navigate back to My Diary
       console.log("Going back to My Diary...");
-      this.$router.push('/mydairy');
+      this.$router.push('/my-diary');
     }
   }
 };

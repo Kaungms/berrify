@@ -47,10 +47,10 @@
         <div class="nav-item" @click="$router.push('/tips')">
           <i class="fas fa-list"></i>
         </div>
-        <div class="nav-item" @click="$router.push('/mydairy')">
+        <div class="nav-item" @click="$router.push('/my-diary')">
           <i class="fas fa-seedling"></i>
         </div>
-        <div class="nav-item" @click="$router.push('/setting')">
+        <div class="nav-item" @click="$router.push('/setting')">>
           <i class="fas fa-cog"></i>
         </div>
         <div class="nav-item" @click="$router.push('/profile')">
@@ -64,10 +64,10 @@
           <div class="nav-item" @click="$router.push('/tips')">
             <i class="fas fa-list"></i>
           </div>
-          <div class="nav-item" @click="$router.push('/mydairy')">
+          <div class="nav-item" @click="$router.push('/my-diary')">
             <i class="fas fa-seedling"></i>
           </div>
-          <div class="nav-item" @click="$router.push('/setting')">
+          <div class="nav-item" @click="$router.push('/setting')">>
             <i class="fas fa-cog"></i>
           </div>
           <div class="nav-item" @click="$router.push('/profile')">

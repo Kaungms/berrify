@@ -265,6 +265,7 @@
 .plant-photo-container {
   margin-top: 20px;
   text-align: center;
+  position: relative;
 }
 
 .plant-photo {
@@ -272,6 +273,42 @@
   height: auto;
   border-radius: 16px;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.plant-photo.custom-photo {
+  max-height: 400px;
+  object-fit: cover;
+  border: 3px solid #4CAF50;
+  box-shadow: 0 8px 25px rgba(76, 175, 80, 0.2);
+}
+
+.plant-photo.default-photo {
+  opacity: 0.9;
+}
+
+.photo-info-overlay {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: rgba(76, 175, 80, 0.9);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.photo-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.photo-label i {
+  font-size: 10px;
 }
 
 .fade-enter-active, .fade-leave-active {
