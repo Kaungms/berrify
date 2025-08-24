@@ -7,7 +7,6 @@ import { createRouter, createWebHistory } from "vue-router";
 import WelcomePage from "./components/WelcomePage.vue";
 import LoginPage from "./components/LoginPage.vue";
 import ForgotPassword from "./components/Forgotpassword.vue";
-import ChooseMode from "./components/ChooseMode.vue";
 import Home from "./components/Home.vue";
 import MyDairy from "./components/MyDairy.vue";
 import Tips from "./components/Tips.vue";
@@ -18,7 +17,7 @@ import Settings from "./components/Setting.vue";
 import HardwareAnalysis from "./components/HardwareAnalysis.vue";
 import ScannedPhoto from "./components/ScannedPhoto.vue";
 import StrawberryRanking from "./components/StrawberryRanking.vue";
-import Profile from "./components/Profile.vue";
+import Profile from "./components/profile.vue";
 import AddPlantPhoto from "./components/AddPlantPhoto.vue";
 import PlantScan from "./components/PlantScan.vue";
 // import ProfilePage from "./components/ProfilePage.vue";
@@ -28,7 +27,6 @@ const routes = [
   { path: "/signup", component: SignupPage },
   { path: "/forgot-password", component: ForgotPassword },
   { path: "/welcome", component: WelcomePage },
-  { path: "/choose-mode", component: ChooseMode },
   { path: "/home", component: Home },
   { path: "/my-diary", name: "MyDairy", component: MyDairy },
   { path: "/tips", name: "Tips", component: Tips },

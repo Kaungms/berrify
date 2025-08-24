@@ -1,5 +1,13 @@
 /* LoginPage Component Styles */
 
+/* Remove white background when showing flower animation */
+.login-page .form-container {
+  background: none !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
 /* Flower Loader Animation */
 .flower {
   width: 300px;
@@ -13,6 +21,9 @@
   animation-duration: 2s;
   animation-iteration-count: infinite;
   animation-timing-function: ease;
+  background: none !important;
+  box-shadow: none !important;
+  border: none !important;
 }
 
 .petal {
