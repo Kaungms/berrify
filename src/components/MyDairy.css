@@ -180,7 +180,7 @@
   flex-wrap: wrap;
 }
 
-.scan-btn, .harvest-btn, .moisture-btn {
+.scan-btn, .harvest-btn, .moisture-btn, .care-btn, .water-btn {
   padding: 12px 20px;
   border: none;
   border-radius: 12px;
@@ -235,6 +235,35 @@
 
 .harvest-btn i {
   font-size: 16px;
+}
+
+.care-btn {
+  background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+  color: white;
+}
+
+.care-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(33, 150, 243, 0.4);
+  background: linear-gradient(135deg, #1976D2 0%, #1565C0 100%);
+}
+
+.water-btn {
+  background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+  color: white;
+}
+
+.water-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(33, 150, 243, 0.4);
+  background: linear-gradient(135deg, #1976D2 0%, #1565C0 100%);
+}
+
+.water-btn:disabled {
+  background: linear-gradient(135deg, #B0BEC5 0%, #90A4AE 100%);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .basket-icon {
