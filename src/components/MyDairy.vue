@@ -48,24 +48,52 @@
             <p class="status-alert">{{ plant.statusAlert || 'Scan to check status' }}</p>
             <div class="moisture">
               <i class="fas fa-tint"></i>
-              <span class="moisture-value">{{ plant.moisture !== null ? plant.moisture : '--' }}%</span>
-              <span class="moisture-label">Soil Moisture</span>
+              <template v-if="plant.mode === 'hardware'">
+                <span class="moisture-value">{{ plant.moisture !== null ? plant.moisture : '--' }}%</span>
+                <span class="moisture-label">Soil Moisture</span>
+              </template>
+              <template v-else-if="plant.mode === 'phone'">
+                <span class="moisture-value">{{ plant.lastWatered || 'Never' }}</span>
+                <span class="moisture-label">Last Watered</span>
+              </template>
             </div>
             
             <!-- Action Buttons -->
             <div class="plant-actions">
-              <button class="scan-btn" @click="scanPlant(plant)">
-                <i class="fas fa-qrcode"></i>
-                Scan Now
-              </button>
-              <button class="moisture-btn" @click="measurePlantSoilMoisture(plant)">
-                <i class="fas fa-tint"></i>
-                Soil Moisture
-              </button>
-              <button class="harvest-btn" @click="harvestPlant(plant)">
-                <i class="fas fa-cut"></i>
-                I want to harvest now
-              </button>
+              <!-- Hardware Mode Buttons -->
+              <template v-if="plant.mode === 'hardware'">
+                <button class="scan-btn" @click="scanPlant(plant)">
+                  <i class="fas fa-qrcode"></i>
+                  Scan Now
+                </button>
+                <button class="moisture-btn" @click="measurePlantSoilMoisture(plant)">
+                  <i class="fas fa-tint"></i>
+                  Soil Moisture
+                </button>
+                <button class="harvest-btn" @click="harvestPlant(plant)">
+                  <i class="fas fa-cut"></i>
+                  I want to harvest now
+                </button>
+              </template>
+
+              <!-- Phone Mode Buttons -->
+              <template v-else-if="plant.mode === 'phone'">
+                <button class="care-btn" @click="manageCare(plant)">
+                  <i class="fas fa-heart"></i>
+                  Manage Care
+                </button>
+                <button 
+                  class="water-btn" 
+                  @click="markAsWatered(plant)"
+                  :disabled="plant.wateredToday">
+                  <i class="fas fa-tint"></i>
+                  {{ plant.wateredToday ? 'Watered Today' : 'Mark as Watered' }}
+                </button>
+                <button class="harvest-btn" @click="harvestPlant(plant)">
+                  <i class="fas fa-cut"></i>
+                  I want to harvest now
+                </button>
+              </template>
             </div>
           </div>
 
@@ -152,15 +180,15 @@
                  :class="{ selected: selectedMode === 'phone' }"
                  @click="selectMode('phone')">
               <div class="mode-icon">
-                <i class="fas fa-camera"></i>
+                <i class="fas fa-mobile-alt"></i>
               </div>
               <div class="mode-content">
-                <h3>Phone Camera</h3>
-                <p>Manual photo scanning and analysis</p>
+                <h3>Phone Reminders</h3>
+                <p>Manual care tracking with reminders</p>
                 <ul>
-                  <li>Take photos when convenient</li>
-                  <li>AI-powered strawberry detection</li>
-                  <li>Manual growth tracking</li>
+                  <li>Care reminders and notifications</li>
+                  <li>Manual watering tracking</li>
+                  <li>Simple growth monitoring</li>
                 </ul>
               </div>
             </div>
@@ -217,7 +245,10 @@ export default {
         moisture: 72,
         expanded: false,
         isDefault: true,
-        dateAdded: new Date().toISOString()
+        dateAdded: new Date().toISOString(),
+        wateredToday: false,
+        lastWatered: null,
+        lastWateredDate: null
       }
     };
   },
@@ -233,6 +264,7 @@ export default {
     this.loadPlants();
     this.loadDefaultPlant();
     this.checkForNewPlantWithPhoto();
+    this.updateWateredStatus();
   },
   methods: {
     checkForNewPlantWithPhoto() {
@@ -284,7 +316,10 @@ export default {
         moisture: this.defaultPlant.moisture,
         status: this.defaultPlant.status,
         statusAlert: this.defaultPlant.statusAlert,
-        expanded: this.defaultPlant.expanded
+        expanded: this.defaultPlant.expanded,
+        wateredToday: this.defaultPlant.wateredToday,
+        lastWatered: this.defaultPlant.lastWatered,
+        lastWateredDate: this.defaultPlant.lastWateredDate
       }));
     },
     updateNextPlantNumber() {
@@ -321,29 +356,12 @@ export default {
       
       const finalName = this.newPlantName.trim() || this.defaultPlantName;
       
-      if (this.selectedMode === 'phone') {
-        // For phone mode, redirect to photo upload page
-        localStorage.setItem('newPlantName', finalName);
-        localStorage.setItem('newPlantMode', this.selectedMode);
-        
-        this.closeChooseMode();
-        
-        // Navigate to photo upload page
-        this.$router.push({
-          path: '/add-plant-photo',
-          query: {
-            plantName: finalName,
-            mode: this.selectedMode
-          }
-        });
-      } else {
-        // For hardware mode, proceed with current flow
-        this.addPlant(finalName, this.selectedMode);
-        this.closeChooseMode();
-        
-        // Show success notification
-        notify.plantAdded(finalName);
-      }
+      // For both modes, proceed with current flow (no more photo upload for phone mode)
+      this.addPlant(finalName, this.selectedMode);
+      this.closeChooseMode();
+      
+      // Show success notification
+      notify.plantAdded(finalName);
     },
     addPlant(name, mode, photoData = null) {
       if (!name || !mode) return;
@@ -356,8 +374,8 @@ export default {
         trackingDescription = 'Tracking: Hardware Device - Real-time monitoring with specialized sensors';
         trackingIcon = 'fas fa-microchip';
       } else if (mode === 'phone') {
-        trackingDescription = 'Tracking: Phone Camera - Manual photo scanning';
-        trackingIcon = 'fas fa-camera';
+        trackingDescription = 'Tracking: Phone - Care reminders and manual tracking';
+        trackingIcon = 'fas fa-mobile-alt';
       }
       
       const newPlant = {
@@ -366,14 +384,17 @@ export default {
         mode: mode,
         trackingDescription: trackingDescription,
         trackingIcon: trackingIcon,
-        status: 'Not yet scanned',
-        statusAlert: 'Scan to check status',
+        status: mode === 'phone' ? 'Care tracking active' : 'Not yet scanned',
+        statusAlert: mode === 'phone' ? 'Remember to water regularly' : 'Scan to check status',
         moisture: mode === 'hardware' ? Math.floor(Math.random() * 30) + 50 : null, // Random moisture for hardware
         expanded: false,
         dateAdded: new Date().toISOString(),
         photo: photoData ? photoData.photo : null,
         photoName: photoData ? photoData.photoName : null,
-        photoSize: photoData ? photoData.photoSize : null
+        photoSize: photoData ? photoData.photoSize : null,
+        wateredToday: false,
+        lastWatered: null,
+        lastWateredDate: null
       };
       
       this.plants.push(newPlant);
@@ -441,7 +462,19 @@ export default {
     harvestPlant(plant) {
       console.log(`Starting harvest process for: ${plant.name}`);
       
-      // Check if there's a recent scan for this specific plant
+      if (plant.mode === 'phone') {
+        // For phone mode, navigate to harvest input page
+        this.$router.push({
+          path: '/phone-harvest',
+          query: {
+            plantName: plant.name,
+            plantId: plant.isDefault ? 'default' : plant.id
+          }
+        });
+        return;
+      }
+      
+      // For hardware mode, check if there's a recent scan
       let lastScanTime;
       if (plant.isDefault) {
         lastScanTime = localStorage.getItem('lastScanTime');
@@ -530,6 +563,75 @@ export default {
           alert('Please enter a valid number between 0 and 100.');
         }
       }
+    },
+    
+    // New methods for phone mode
+    manageCare(plant) {
+      console.log(`Managing care for: ${plant.name}`);
+      // Navigate to a care management page (you can create this later)
+      this.$router.push({
+        path: '/plant-scan', // Reuse this page but modify it for care management
+        query: {
+          plantName: plant.name,
+          plantId: plant.isDefault ? 'default' : plant.id,
+          mode: 'care'
+        }
+      });
+    },
+
+    markAsWatered(plant) {
+      if (plant.wateredToday) return;
+      
+      const today = new Date();
+      plant.wateredToday = true;
+      plant.lastWatered = 'Today';
+      plant.lastWateredDate = today.toISOString();
+      
+      // Save the changes
+      if (plant.isDefault) {
+        this.saveDefaultPlant();
+      } else {
+        this.savePlants();
+      }
+      
+      notify.success(`${plant.name} has been watered! 💧`);
+    },
+
+    updateWateredStatus() {
+      const today = new Date().toDateString();
+      
+      // Update default plant
+      if (this.defaultPlant.lastWateredDate) {
+        const lastWateredDate = new Date(this.defaultPlant.lastWateredDate).toDateString();
+        if (lastWateredDate !== today) {
+          this.defaultPlant.wateredToday = false;
+          this.defaultPlant.lastWatered = this.getLastWateredDisplay(this.defaultPlant.lastWateredDate);
+        }
+      }
+      
+      // Update other plants
+      this.plants.forEach(plant => {
+        if (plant.mode === 'phone' && plant.lastWateredDate) {
+          const lastWateredDate = new Date(plant.lastWateredDate).toDateString();
+          if (lastWateredDate !== today) {
+            plant.wateredToday = false;
+            plant.lastWatered = this.getLastWateredDisplay(plant.lastWateredDate);
+          }
+        }
+      });
+    },
+
+    getLastWateredDisplay(dateString) {
+      if (!dateString) return 'Never';
+      
+      const today = new Date();
+      const wateredDate = new Date(dateString);
+      const diffTime = today - wateredDate;
+      const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+      
+      if (diffDays === 0) return 'Today';
+      if (diffDays === 1) return 'Yesterday';
+      return `${diffDays} days ago`;
     },
     
     // Test notification methods

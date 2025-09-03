@@ -20,6 +20,7 @@ import StrawberryRanking from "./components/StrawberryRanking.vue";
 import Profile from "./components/profile.vue";
 import AddPlantPhoto from "./components/AddPlantPhoto.vue";
 import PlantScan from "./components/PlantScan.vue";
+import PhoneHarvest from "./components/PhoneHarvest.vue";
 // import ProfilePage from "./components/ProfilePage.vue";
 
 const routes = [
@@ -58,6 +59,11 @@ const routes = [
     path: "/plant-scan",
     name: "PlantScan",
     component: PlantScan,
+  },
+  {
+    path: "/phone-harvest",
+    name: "PhoneHarvest",
+    component: PhoneHarvest,
   },
 ];
 
