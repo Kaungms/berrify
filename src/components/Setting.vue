@@ -15,51 +15,71 @@
       <!-- Auto-Watering Toggle -->
       <div class="setting-card">
         <span>Auto-Watering</span>
-        <label class="switch"> 
-        <input type="checkbox" v-model="autoWatering">
-        <span class="slider round"></span>
+        <label class="switch">
+          <input type="checkbox" v-model="autoWatering" />
+          <span class="slider round"></span>
         </label>
       </div>
 
       <!-- Notifications Toggle -->
       <div class="setting-card">
         <span>Notifications</span>
-        <label class="switch"> 
-        <input type="checkbox" v-model="notifications">
-        <span class="slider round"></span>
+        <label class="switch">
+          <input type="checkbox" v-model="notifications" />
+          <span class="slider round"></span>
         </label>
       </div>
 
       <div class="social-buttons">
-          <button class="btn-social" @click="logout">Logout</button>
-          <button class="btn-social danger-button">Delete Account</button>
+        <button class="btn-social" @click="logout">Logout</button>
+        <button class="btn-social danger-button">Delete Account</button>
+      </div>
+
+      <!-- Bottom Icon Navigation -->
+      <div class="icon-nav">
+        <div class="nav-item" @click="$router.push('/home')">
+          <i class="fas fa-home"></i>
         </div>
+        <div class="nav-item" @click="$router.push('/tips')">
+          <i class="fas fa-list"></i>
+        </div>
+        <div class="nav-item" @click="$router.push('/my-diary')">
+          <i class="fas fa-seedling"></i>
+        </div>
+        <div class="nav-item" @click="$router.push('/setting')">
+          >
+          <i class="fas fa-cog"></i>
+        </div>
+        <div class="nav-item" @click="$router.push('/profile')">
+          <i class="fas fa-user"></i>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { ref } from "vue";
+import { useRouter } from "vue-router";
 
-const autoWatering = ref(false)
-const notifications = ref(false)
-const router = useRouter()
+const autoWatering = ref(false);
+const notifications = ref(false);
+const router = useRouter();
 
 function goHome() {
-  router.push('/home')
+  router.push("/home");
 }
 
 function logout() {
   // Clear any stored user data
-  localStorage.removeItem('userLoggedIn')
-  localStorage.removeItem('strawberryPlants')
-  localStorage.removeItem('lastScanTime')
-  localStorage.removeItem('strawberriesToKeep')
-  localStorage.removeItem('detectedStrawberries')
-  
+  localStorage.removeItem("userLoggedIn");
+  localStorage.removeItem("strawberryPlants");
+  localStorage.removeItem("lastScanTime");
+  localStorage.removeItem("strawberriesToKeep");
+  localStorage.removeItem("detectedStrawberries");
+
   // Navigate back to login page
-  router.push('/')
+  router.push("/");
 }
 </script>
 
@@ -108,7 +128,7 @@ function logout() {
   right: 0;
   bottom: 0;
   background-color: #ccc;
-  transition: .4s;
+  transition: 0.4s;
   border-radius: 34px;
 }
 
@@ -120,13 +140,13 @@ function logout() {
   left: 4px;
   bottom: 4px;
   background-color: white;
-  transition: .4s;
+  transition: 0.4s;
   border-radius: 50%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 input:checked + .slider {
-  background-color: #4CAF50;
+  background-color: #4caf50;
 }
 
 input:checked + .slider:before {
@@ -158,7 +178,7 @@ input:checked + .slider:before {
 .btn-social:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-  border-color: #4CAF50;
+  border-color: #4caf50;
 }
 
 .danger-button {
@@ -174,4 +194,3 @@ input:checked + .slider:before {
   border-color: #d32f2f !important;
 }
 </style>
-

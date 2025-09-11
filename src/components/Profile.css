@@ -20,6 +20,19 @@
   background: linear-gradient(135deg, #45a049 0%, #3d8b40 100%);
 }
 
+.add-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #896c5f;
+  height: 140px; /* bigger box */
+  width: 140px;
+  border-radius: 20px;
+  font-size: 48px; /* bigger "+" */
+  cursor: pointer;
+}
+
+/* Choose Mode Section */
 .choose-mode-section {
   background: white;
   padding: 32px;
@@ -43,6 +56,7 @@
   line-height: 1.5;
 }
 
+/* Option Cards */
 .option-card {
   display: flex;
   flex-direction: column;
@@ -63,13 +77,13 @@
 }
 
 .option:hover {
-  border-color: #4caf50;
+  border-color: #896c5f;
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(76, 175, 80, 0.1);
 }
 
 .option.selected {
-  border-color: #4caf50;
+  border-color: #896c5f;
   background: linear-gradient(135deg, #f0f8f0 0%, #e8f5e8 100%);
   box-shadow: 0 6px 20px rgba(76, 175, 80, 0.2);
 }
@@ -92,7 +106,7 @@
 
 .option-icon i {
   font-size: 28px;
-  color: #4caf50;
+  color: #896c5f;
   transition: all 0.3s ease;
 }
 
@@ -122,6 +136,19 @@
   font-weight: 500;
 }
 
+/* Plant Name */
+.plant-name {
+  margin-top: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
 .plant-name-section {
   margin-bottom: 30px;
 }
@@ -146,11 +173,12 @@
 
 .plant-name-input:focus {
   outline: none;
-  border-color: #4caf50;
+  border-color: #896c5f;
   box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.1);
   transform: translateY(-1px);
 }
 
+/* Action Buttons */
 .action-buttons {
   display: flex;
   gap: 20px;
@@ -179,12 +207,12 @@
 .btn-secondary:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-  border-color: #4caf50;
-  color: #4caf50;
+  border-color: #896c5f;
+  color: #896c5f;
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+  background: linear-gradient(135deg, #896c5f 0%, #7b5e4f 100%);
   color: white;
   box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
 }
@@ -192,7 +220,7 @@
 .btn-primary:hover:not(:disabled) {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
-  background: linear-gradient(135deg, #45a049 0%, #3d8b40 100%);
+  background: linear-gradient(135deg, #896c5f 0%, #7b5e4f 100%);
 }
 
 .btn-primary:disabled {
@@ -202,9 +230,9 @@
   box-shadow: none;
 }
 
+/* Profile Page Layout */
 .profile-page {
-  /* padding: 20px; */
-  background-color: #93bfa1; /* Match background from screenshot */
+  background-color: #93bfa1;
   min-height: 100vh;
   box-sizing: border-box;
 }
@@ -236,21 +264,24 @@
 }
 
 .section-title {
+  text-align: left;
   font-size: 20px;
   font-weight: 700;
   margin-bottom: 12px;
   color: #000;
 }
 
+/* Strawberries Scrollable Grid */
 .strawberries-grid {
   display: flex;
   gap: 16px;
   overflow-x: auto;
+  padding-bottom: 8px;
 }
 
 .strawberry-card {
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   background: white;
   border-radius: 16px;
   display: flex;
@@ -258,11 +289,21 @@
   align-items: center;
   flex-shrink: 0;
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.strawberry-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 .strawberry-img {
-  width: 60px;
-  height: auto;
+  width: 130px;
+  height: 130px;
+  border-radius: 12px;
+  object-fit: cover;
 }
 
 /* Achievement Card */

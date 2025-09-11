@@ -1,7 +1,8 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  background: linear-gradient(135deg, #8AB58A 0%, #A8D4A8 100%);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
+  background: linear-gradient(135deg, #8ab58a 0%, #a8d4a8 100%);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,10 +16,11 @@ body {
 }
 
 /* Global Button Styles */
-.btn-primary, .btn-main {
+.btn-primary,
+.btn-main {
   width: 100%;
   padding: 16px 24px;
-  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  background: linear-gradient(135deg, #896c5f 0%, #333 100%);
   color: white;
   border: none;
   border-radius: 12px;
@@ -31,13 +33,15 @@ body {
   letter-spacing: 0.5px;
 }
 
-.btn-primary:hover, .btn-main:hover {
+.btn-primary:hover,
+.btn-main:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
-  background: linear-gradient(135deg, #45a049 0%, #3d8b40 100%);
+  background: linear-gradient(135deg, #896c5f 0%, #333 100%);
 }
 
-.btn-primary:active, .btn-main:active {
+.btn-primary:active,
+.btn-main:active {
   transform: translateY(0);
   box-shadow: 0 2px 10px rgba(76, 175, 80, 0.3);
 }
@@ -61,8 +65,8 @@ body {
 .btn-secondary:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-  border-color: #4CAF50;
-  color: #4CAF50;
+  border-color: #4caf50;
+  color: #4caf50;
 }
 
 .btn-danger {
@@ -100,13 +104,18 @@ body {
 }
 
 .back-button::before {
-  content: '' !important;
+  content: "" !important;
   position: absolute !important;
   top: 0 !important;
   left: -100% !important;
   width: 100% !important;
   height: 100% !important;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent) !important;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  ) !important;
   transition: left 0.5s ease !important;
 }
 
@@ -130,7 +139,7 @@ body {
   min-height: 100vh !important;
   max-width: 100vw !important;
   width: 100% !important;
-  background: linear-gradient(135deg, #8AB58A 0%, #A8D4A8 100%) !important;
+  background: linear-gradient(135deg, #8ab58a 0%, #a8d4a8 100%) !important;
   padding: 24px !important;
   padding-top: 100px !important;
   box-sizing: border-box !important;
@@ -158,7 +167,8 @@ body {
 }
 
 /* Card and Form Styles */
-.form-card, .card {
+.form-card,
+.card {
   background: white;
   padding: 32px;
   border-radius: 20px;
@@ -196,7 +206,7 @@ body {
 
 .form-group input:focus {
   outline: none;
-  border-color: #4CAF50;
+  border-color: #4caf50;
   box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.1);
   transform: translateY(-1px);
 }
@@ -207,7 +217,7 @@ body {
 }
 
 .signup-link span {
-  color: #4CAF50;
+  color: #4caf50;
   font-weight: bold;
   cursor: pointer;
   transition: color 0.3s ease;
@@ -248,7 +258,7 @@ body {
 
 .form-group input {
   width: 90%;
-  padding: 8px 12px;  
+  padding: 8px 12px;
   /* Adjusted padding: smaller vertical padding */
   border: 1px solid #ccc;
   border-radius: 10px;
@@ -271,7 +281,7 @@ body {
   display: block;
   margin-top: 15px;
   text-align: center;
-  color: #4CAF50;
+  color: #4caf50;
   text-decoration: none;
   font-weight: 600;
   transition: color 0.3s ease;
@@ -308,10 +318,10 @@ body {
 .btn-social:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-  border-color: #4CAF50;
+  border-color: #4caf50;
 }
 
-.danger-button{
+.danger-button {
   background: red;
   color: white;
 }
@@ -332,7 +342,7 @@ body {
   margin: 0 auto 20px;
   color: black;
   font-weight: 500;
-  font-family: 'Courier New', monospace;
+  font-family: "Courier New", monospace;
 }
 
 .option {
@@ -404,7 +414,7 @@ body {
 }
 
 .diary-entry img {
-  width: 100px;  /* Smaller than before */
+  width: 100px; /* Smaller than before */
   height: auto;
 }
 
@@ -444,7 +454,7 @@ body {
 .back-button {
   position: fixed;
   top: 60px;
-  left: 20px;  /* Now on the left instead of right */
+  left: 20px; /* Now on the left instead of right */
   font-size: 24px;
   cursor: pointer;
   color: black;
@@ -452,7 +462,7 @@ body {
 }
 
 .tips-page {
-  background: #8AB58A;
+  background: #8ab58a;
   min-height: 100vh;
   padding: 20px;
 }

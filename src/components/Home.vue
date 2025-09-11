@@ -50,14 +50,15 @@
         <div class="nav-item" @click="$router.push('/my-diary')">
           <i class="fas fa-seedling"></i>
         </div>
-        <div class="nav-item" @click="$router.push('/setting')">>
+        <div class="nav-item" @click="$router.push('/setting')">
+          >
           <i class="fas fa-cog"></i>
         </div>
         <div class="nav-item" @click="$router.push('/profile')">
           <i class="fas fa-user"></i>
         </div>
         <!-- Bottom Icon Navigation -->
-        <div class="icon-nav">
+        <!-- <div class="icon-nav">
           <div class="nav-item" @click="$router.push('/home')">
             <i class="fas fa-home"></i>
           </div>
@@ -73,7 +74,7 @@
           <div class="nav-item" @click="$router.push('/profile')">
             <i class="fas fa-user"></i>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -100,12 +101,10 @@ export default {
       ],
       // items for the scrollable cards
       cards: [
-        { label: "Harvest", image: "/strawberries.png" },
-        { label: "Recipe", image: "/strawberries.png" },
-        { label: "Storage", image: "/strawberries.png" },
-        { label: "Caring", image: "/strawberries.png" },
-        { label: "Watering", image: "/strawberries.png" },
-        { label: "Watering", image: "/strawberries.png" },
+        { label: "Harvest", image: "/harvest.png" },
+        { label: "Recipe", image: "/recipe.png" },
+        { label: "Storage", image: "/storage.png" },
+        { label: "Caring", image: "/caring.png" },
       ],
       strawberries: [
         { label: "Strawberry 1", image: "/strawberries.png" },

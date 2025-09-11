@@ -139,7 +139,7 @@ body {
   display: block;
 }
 
-/* Horizontal Scroll Cards (Mobile First) */
+/*Tips Horizontal Scroll Cards (Mobile First) */
 .scroll-container {
   display: flex;
   overflow-x: auto;
@@ -160,7 +160,7 @@ body {
 
 .scroll-card {
   flex: 0 0 auto;
-  width: 72px;
+  width: 80px;
   margin-left: 5px;
   margin-right: 5px;
   text-align: center;
@@ -169,8 +169,8 @@ body {
 }
 
 .scroll-card img {
-  width: 75px;
-  height: 75px;
+  width: 85px;
+  height: 85px;
   object-fit: cover;
   border-radius: 50%;
   border: 2px solid #ccc;

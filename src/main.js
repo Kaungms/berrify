@@ -17,7 +17,10 @@ import Settings from "./components/Setting.vue";
 import HardwareAnalysis from "./components/HardwareAnalysis.vue";
 import ScannedPhoto from "./components/ScannedPhoto.vue";
 import StrawberryRanking from "./components/StrawberryRanking.vue";
-import Profile from "./components/profile.vue";
+import Profile from "./components/Profile.vue";
+import AdminLogin from "./components/AdminLogin.vue";
+import AdminPage from "./components/AdminPage.vue";
+
 import AddPlantPhoto from "./components/AddPlantPhoto.vue";
 import PlantScan from "./components/PlantScan.vue";
 import PhoneHarvest from "./components/PhoneHarvest.vue";
@@ -25,6 +28,8 @@ import PhoneHarvest from "./components/PhoneHarvest.vue";
 
 const routes = [
   { path: "/", component: LoginPage },
+  { path: "/adminlogin", component: AdminLogin },
+  { path: "/adminpage", component: AdminPage },
   { path: "/signup", component: SignupPage },
   { path: "/forgot-password", component: ForgotPassword },
   { path: "/welcome", component: WelcomePage },
