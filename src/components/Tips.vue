@@ -83,6 +83,69 @@
         </button>
       </div>
 
+      <!-- Strawberry Harvest Tips Section -->
+      <div class="jam-card" style="margin-top: 32px">
+        <h2>Strawberry Harvest Tips</h2>
+        <img src="/harvest.png" alt="Strawberries Ready to Pick" />
+        <div class="recipe-text" :class="{ collapsed: !expanded.harvest }">
+          <h3>When to Harvest:</h3>
+          <ul>
+            <li>
+              Pick strawberries when fully red; avoid partially white or green
+              berries.
+            </li>
+            <li>Berries should be firm but slightly soft to the touch.</li>
+            <li>
+              Harvest in the morning when it’s cool for best flavor and shelf
+              life.
+            </li>
+            <li>Check plants every 1–3 days during peak season.</li>
+          </ul>
+
+          <h3>How to Pick:</h3>
+          <ul>
+            <li>
+              Hold the strawberry by the stem, not the fruit, to avoid bruising.
+            </li>
+            <li>Leave 1–2 cm of green calyx attached for longer storage.</li>
+            <li>
+              Place berries gently in a shallow container to prevent squishing.
+            </li>
+          </ul>
+
+          <h3>Care & Storage:</h3>
+          <ul>
+            <li>Do not wash immediately; wash only before eating or using.</li>
+            <li>
+              Remove any moldy or damaged berries to protect healthy ones.
+            </li>
+            <li>
+              Store unwashed berries in a single layer in the fridge for 2–3
+              days.
+            </li>
+            <li>For longer storage, freeze after gently washing and drying.</li>
+          </ul>
+
+          <h3>Tips for More Yield:</h3>
+          <ul>
+            <li>Pick frequently to encourage more fruit production.</li>
+            <li>Leave healthy runners unless you want new plants.</li>
+            <li>Use mulch under plants to keep berries clean and dry.</li>
+            <li>
+              Ensure 6–8 hours of sunlight and adequate water for larger,
+              sweeter berries.
+            </li>
+          </ul>
+        </div>
+        <button
+          class="toggle-arrow"
+          @click="expanded.harvest = !expanded.harvest"
+        >
+          <span v-if="expanded.harvest">▲</span>
+          <span v-else>▼</span>
+        </button>
+      </div>
+
       <!-- Bottom Icon Navigation -->
       <div class="icon-nav">
         <div class="nav-item" @click="$router.push('/home')">
