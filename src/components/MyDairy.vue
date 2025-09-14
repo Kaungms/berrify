@@ -198,7 +198,7 @@
             @click="testNotifications.success()"
             style="
               padding: 8px 16px;
-              background: #4caf50;
+              background: #896c5f;
               color: white;
               border: none;
               border-radius: 6px;

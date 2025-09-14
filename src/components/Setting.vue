@@ -146,7 +146,7 @@ function logout() {
 }
 
 input:checked + .slider {
-  background-color: #4caf50;
+  background-color: #896c5f;
 }
 
 input:checked + .slider:before {
@@ -178,7 +178,7 @@ input:checked + .slider:before {
 .btn-social:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-  border-color: #4caf50;
+  border-color: #896c5f;
 }
 
 .danger-button {

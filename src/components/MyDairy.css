@@ -15,7 +15,7 @@
 }
 
 .today-btn {
-  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  background: linear-gradient(135deg, #896c5f 0%, #6b4c3f 100%);
   color: white;
   border: none;
   border-radius: 12px;
@@ -31,7 +31,7 @@
 .today-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
-  background: linear-gradient(135deg, #45a049 0%, #3d8b40 100%);
+  background: linear-gradient(135deg, #6b4c3f 0%, #3d8b40 100%);
 }
 
 .calendar-card .vuecal__title {
@@ -42,11 +42,11 @@
 
 /* Highlight today's date - Make it VERY obvious */
 .calendar-card .vuecal__cell.today {
-  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%) !important;
+  background: linear-gradient(135deg, #896c5f 0%, #6b4c3f 100%) !important;
   color: white !important;
   border-radius: 12px !important;
   font-weight: 900 !important;
-  border: 3px solid #2E7D32 !important;
+  border: 3px solid #2e7d32 !important;
   box-shadow: 0 6px 20px rgba(76, 175, 80, 0.5) !important;
   transform: scale(1.1) !important;
   position: relative !important;
@@ -59,7 +59,7 @@
   top: -8px;
   left: 50%;
   transform: translateX(-50%);
-  background: #FF5722;
+  background: #ff5722;
   color: white;
   font-size: 8px;
   font-weight: 700;
@@ -82,7 +82,7 @@
 }
 
 .calendar-card .vuecal__cell.selected {
-  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  background: linear-gradient(135deg, #896c5f 0%, #6b4c3f 100%);
   color: white !important;
   border-radius: 8px;
   font-weight: 700;
@@ -123,7 +123,7 @@
 }
 
 .status-alert {
-  color: #4CAF50 !important;
+  color: #896c5f !important;
   font-weight: 600 !important;
   font-size: 16px !important;
 }
@@ -136,12 +136,12 @@
 }
 
 .moisture i {
-  color: #2196F3;
+  color: #2196f3;
   font-size: 16px;
 }
 
 .moisture-value {
-  color: #2196F3;
+  color: #2196f3;
   font-weight: 700;
   font-size: 18px;
 }
@@ -159,7 +159,7 @@
 }
 
 .tracking-description {
-  color: #4CAF50 !important;
+  color: #896c5f !important;
   font-size: 14px !important;
   font-weight: 600 !important;
   margin: 8px 0 !important;
@@ -169,7 +169,7 @@
 }
 
 .tracking-description i {
-  color: #4CAF50;
+  color: #896c5f;
   font-size: 16px;
 }
 
@@ -180,7 +180,11 @@
   flex-wrap: wrap;
 }
 
-.scan-btn, .harvest-btn, .moisture-btn, .care-btn, .water-btn {
+.scan-btn,
+.harvest-btn,
+.moisture-btn,
+.care-btn,
+.water-btn {
   padding: 12px 20px;
   border: none;
   border-radius: 12px;
@@ -196,29 +200,29 @@
 }
 
 .scan-btn {
-  background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+  background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);
   color: white;
 }
 
 .scan-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(33, 150, 243, 0.4);
-  background: linear-gradient(135deg, #1976D2 0%, #1565C0 100%);
+  background: linear-gradient(135deg, #1976d2 0%, #1565c0 100%);
 }
 
 .moisture-btn {
-  background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+  background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);
   color: white;
 }
 
 .moisture-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(33, 150, 243, 0.4);
-  background: linear-gradient(135deg, #1976D2 0%, #1565C0 100%);
+  background: linear-gradient(135deg, #1976d2 0%, #1565c0 100%);
 }
 
 .harvest-btn {
-  background: linear-gradient(135deg, #FF5722 0%, #E64A19 100%);
+  background: linear-gradient(135deg, #ff5722 0%, #e64a19 100%);
   color: white;
   font-weight: 700;
   text-transform: uppercase;
@@ -230,7 +234,7 @@
 .harvest-btn:hover {
   transform: translateY(-3px);
   box-shadow: 0 8px 25px rgba(255, 87, 34, 0.5);
-  background: linear-gradient(135deg, #E64A19 0%, #D84315 100%);
+  background: linear-gradient(135deg, #e64a19 0%, #d84315 100%);
 }
 
 .harvest-btn i {
@@ -238,29 +242,29 @@
 }
 
 .care-btn {
-  background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+  background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);
   color: white;
 }
 
 .care-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(33, 150, 243, 0.4);
-  background: linear-gradient(135deg, #1976D2 0%, #1565C0 100%);
+  background: linear-gradient(135deg, #1976d2 0%, #1565c0 100%);
 }
 
 .water-btn {
-  background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+  background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);
   color: white;
 }
 
 .water-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(33, 150, 243, 0.4);
-  background: linear-gradient(135deg, #1976D2 0%, #1565C0 100%);
+  background: linear-gradient(135deg, #1976d2 0%, #1565c0 100%);
 }
 
 .water-btn:disabled {
-  background: linear-gradient(135deg, #B0BEC5 0%, #90A4AE 100%);
+  background: linear-gradient(135deg, #b0bec5 0%, #90a4ae 100%);
   cursor: not-allowed;
   transform: none;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
@@ -286,7 +290,7 @@
 }
 
 .dropdown-icon:hover {
-  background: #4CAF50;
+  background: #896c5f;
   color: white;
   transform: scale(1.1);
 }
@@ -308,7 +312,7 @@
 .plant-photo.custom-photo {
   max-height: 400px;
   object-fit: cover;
-  border: 3px solid #4CAF50;
+  border: 3px solid #896c5f;
   box-shadow: 0 8px 25px rgba(76, 175, 80, 0.2);
 }
 
@@ -340,11 +344,13 @@
   font-size: 10px;
 }
 
-.fade-enter-active, .fade-leave-active {
+.fade-enter-active,
+.fade-leave-active {
   transition: opacity 0.3s ease;
 }
 
-.fade-enter-from, .fade-leave-to {
+.fade-enter-from,
+.fade-leave-to {
   opacity: 0;
 }
 
@@ -373,7 +379,7 @@
 
 .no-plants-content .btn-primary {
   padding: 16px 32px;
-  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  background: linear-gradient(135deg, #896c5f 0%, #6b4c3f 100%);
   color: white;
   border: none;
   border-radius: 12px;
@@ -392,7 +398,7 @@
 /* Add Plant Card Styles */
 .add-plant-card {
   background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-  border: 2px dashed #4CAF50;
+  border: 2px dashed #896c5f;
   border-radius: 20px;
   padding: 40px 24px;
   margin-bottom: 20px;
@@ -402,13 +408,13 @@
 
 .add-plant-card:hover {
   background: linear-gradient(135deg, #f0f8f0 0%, #e8f5e8 100%);
-  border-color: #45a049;
+  border-color: #6b4c3f;
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(76, 175, 80, 0.1);
 }
 
 .add-plant-btn {
-  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  background: linear-gradient(135deg, #896c5f 0%, #6b4c3f 100%);
   color: white;
   border: none;
   border-radius: 16px;
@@ -429,7 +435,7 @@
 .add-plant-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
-  background: linear-gradient(135deg, #45a049 0%, #3d8b40 100%);
+  background: linear-gradient(135deg, #6b4c3f 0%, #3d8b40 100%);
 }
 
 .add-plant-btn i {
@@ -480,18 +486,18 @@
     padding: 30px 20px;
     margin-bottom: 16px;
   }
-  
+
   .add-plant-btn {
     padding: 16px 24px;
     font-size: 16px;
   }
-  
+
   .plant-header {
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
   }
-  
+
   .remove-plant-btn {
     margin-left: 0;
     align-self: flex-end;
@@ -572,13 +578,13 @@
 }
 
 .mode-option:hover {
-  border-color: #4CAF50;
+  border-color: #896c5f;
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(76, 175, 80, 0.1);
 }
 
 .mode-option.selected {
-  border-color: #4CAF50;
+  border-color: #896c5f;
   background: linear-gradient(135deg, #f0f8f0 0%, #e8f5e8 100%);
   box-shadow: 0 8px 25px rgba(76, 175, 80, 0.2);
 }
@@ -596,12 +602,12 @@
 }
 
 .mode-option.selected .mode-icon {
-  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  background: linear-gradient(135deg, #896c5f 0%, #6b4c3f 100%);
 }
 
 .mode-icon i {
   font-size: 28px;
-  color: #4CAF50;
+  color: #896c5f;
   transition: all 0.3s ease;
 }
 
@@ -646,7 +652,7 @@
   content: "✓";
   position: absolute;
   left: 0;
-  color: #4CAF50;
+  color: #896c5f;
   font-weight: 700;
 }
 
@@ -656,8 +662,14 @@
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .plant-name-section h3 {
@@ -681,7 +693,7 @@
 
 .plant-name-input:focus {
   outline: none;
-  border-color: #4CAF50;
+  border-color: #896c5f;
   box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.1);
   transform: translateY(-1px);
 }
@@ -692,7 +704,8 @@
   justify-content: flex-end;
 }
 
-.btn-cancel, .btn-confirm {
+.btn-cancel,
+.btn-confirm {
   padding: 14px 24px;
   border: none;
   border-radius: 12px;
@@ -718,13 +731,13 @@
 }
 
 .btn-confirm {
-  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  background: linear-gradient(135deg, #896c5f 0%, #6b4c3f 100%);
   color: white;
   box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
 }
 
 .btn-confirm:hover:not(:disabled) {
-  background: linear-gradient(135deg, #45a049 0%, #3d8b40 100%);
+  background: linear-gradient(135deg, #6b4c3f 0%, #3d8b40 100%);
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
 }
@@ -741,40 +754,41 @@
   .modal-overlay {
     padding: 10px;
   }
-  
+
   .choose-mode-modal {
     padding: 24px;
     border-radius: 20px;
   }
-  
+
   .choose-mode-modal h2 {
     font-size: 24px;
   }
-  
+
   .mode-options {
     gap: 16px;
   }
-  
+
   .mode-option {
     padding: 20px;
     gap: 16px;
   }
-  
+
   .mode-icon {
     width: 50px;
     height: 50px;
   }
-  
+
   .mode-icon i {
     font-size: 24px;
   }
-  
+
   .modal-actions {
     flex-direction: column;
     gap: 12px;
   }
-  
-  .btn-cancel, .btn-confirm {
+
+  .btn-cancel,
+  .btn-confirm {
     width: 100%;
   }
 }

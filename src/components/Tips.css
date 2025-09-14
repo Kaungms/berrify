@@ -65,7 +65,7 @@
   padding: 16px 20px;
   background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
   border-radius: 12px;
-  border-left: 4px solid #4caf50;
+  border-left: 4px solid #896c5f;
   transition: all 0.3s ease;
 }
 
@@ -75,7 +75,7 @@
 }
 
 .cycle-steps .highlight {
-  color: #4caf50;
+  color: #896c5f;
   font-weight: 700;
 }
 
@@ -159,7 +159,7 @@
   border: none;
   font-size: 22px;
   cursor: pointer;
-  color: #4caf50;
+  color: #896c5f;
   font-weight: bold;
   transition: transform 0.3s ease;
 }

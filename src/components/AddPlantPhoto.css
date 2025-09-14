@@ -5,7 +5,7 @@
 }
 
 .upload-area {
-  border: 3px dashed #4CAF50;
+  border: 3px dashed #896c5f;
   border-radius: 20px;
   padding: 40px 20px;
   text-align: center;
@@ -21,14 +21,14 @@
 }
 
 .upload-area:hover {
-  border-color: #45a049;
+  border-color: #6b4c3f;
   background: linear-gradient(135deg, #f0f8f0 0%, #e8f5e8 100%);
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(76, 175, 80, 0.15);
 }
 
 .upload-area.drag-over {
-  border-color: #2E7D32;
+  border-color: #2e7d32;
   background: linear-gradient(135deg, #e8f5e8 0%, #dcedc8 100%);
   transform: scale(1.02);
 }
@@ -49,7 +49,7 @@
 .upload-icon {
   width: 80px;
   height: 80px;
-  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  background: linear-gradient(135deg, #896c5f 0%, #6b4c3f 100%);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -171,7 +171,7 @@
 }
 
 .info-item i {
-  color: #4CAF50;
+  color: #896c5f;
   font-size: 16px;
   width: 20px;
 }
@@ -230,7 +230,7 @@
 }
 
 .info-row span i {
-  color: #4CAF50;
+  color: #896c5f;
 }
 
 .action-buttons {
@@ -239,7 +239,8 @@
   margin-bottom: 32px;
 }
 
-.btn-secondary, .btn-primary {
+.btn-secondary,
+.btn-primary {
   flex: 1;
   padding: 16px 24px;
   border: none;
@@ -269,13 +270,13 @@
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  background: linear-gradient(135deg, #896c5f 0%, #6b4c3f 100%);
   color: white;
   box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
 }
 
 .btn-primary:hover:not(:disabled) {
-  background: linear-gradient(135deg, #45a049 0%, #3d8b40 100%);
+  background: linear-gradient(135deg, #6b4c3f 0%, #3d8b40 100%);
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
 }
@@ -323,8 +324,8 @@
 }
 
 .option-btn:hover {
-  border-color: #4CAF50;
-  color: #4CAF50;
+  border-color: #896c5f;
+  color: #896c5f;
   background: #f8fff8;
   transform: translateX(4px);
 }
@@ -340,34 +341,34 @@
     padding: 30px 15px;
     min-height: 250px;
   }
-  
+
   .upload-icon {
     width: 60px;
     height: 60px;
   }
-  
+
   .upload-icon i {
     font-size: 28px;
   }
-  
+
   .upload-content h3 {
     font-size: 20px;
   }
-  
+
   .action-buttons {
     flex-direction: column;
   }
-  
+
   .photo-info {
     gap: 8px;
   }
-  
+
   .info-row {
     flex-direction: column;
     align-items: flex-start;
     gap: 4px;
   }
-  
+
   .option-buttons {
     gap: 8px;
   }
@@ -378,13 +379,13 @@
     padding: 20px 10px;
     min-height: 200px;
   }
-  
+
   .plant-info-section,
   .photo-options,
   .camera-options {
     padding: 16px;
   }
-  
+
   .btn-secondary,
   .btn-primary {
     padding: 14px 20px;

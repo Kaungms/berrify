@@ -1,7 +1,7 @@
 /* Strawberry Ranking Component Styles */
 .strawberry-ranking {
   min-height: 100vh;
-  background: linear-gradient(135deg, #8AB58A 0%, #A8D4A8 100%);
+  background: linear-gradient(135deg, #8ab58a 0%, #a8d4a8 100%);
   padding: 24px;
   color: white;
 }
@@ -64,7 +64,7 @@
 }
 
 .ranking-item.best-quality {
-  border: 3px solid #FFD700;
+  border: 3px solid #ffd700;
   box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
 }
 
@@ -82,7 +82,7 @@
 }
 
 .best-quality .rank-number {
-  background: #FFD700;
+  background: #ffd700;
   color: white;
 }
 
@@ -117,7 +117,7 @@
 .score {
   font-size: 20px;
   font-weight: bold;
-  color: #4CAF50;
+  color: #4caf50;
 }
 
 .quality-label {
@@ -148,7 +148,7 @@
 }
 
 .quality-indicator i {
-  color: #FFD700;
+  color: #ffd700;
   font-size: 18px;
 }
 
@@ -182,12 +182,12 @@
 }
 
 .btn-primary {
-  background: #4CAF50;
+  background: #4caf50;
   color: white;
 }
 
 .btn-primary:hover {
-  background: #45a049;
+  background: #6b4c3f;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
 }

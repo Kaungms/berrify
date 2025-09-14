@@ -13,6 +13,16 @@ body {
   overflow-x: hidden;
 }
 
+/* Section Headings */
+.home h1 {
+  text-align: left;
+  font-size: 24px;
+  font-weight: 700;
+  margin: 24px 0 16px 0;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
 .page-container {
   padding-left: 24px;
   padding-right: 24px;
@@ -49,7 +59,7 @@ body {
 }
 
 .nav-item:hover {
-  background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+  background: linear-gradient(135deg, #896c5f 0%, #6b4c3f 100%);
   transform: translateY(-4px);
   box-shadow: 0 6px 20px rgba(76, 175, 80, 0.3);
 }

@@ -32,7 +32,7 @@
             />
             <select v-model="userSortBy" class="filter-select">
               <option value="name">Sort by Name</option>
-              <option value="harvest">Sort by Total Harvest</option>
+              <option value="harvest">Sort by Strawberries Harvested</option>
               <option value="joinDate">Sort by Join Date</option>
               <option value="lastActive">Sort by Last Active</option>
             </select>
@@ -50,7 +50,7 @@
                 <th>User</th>
                 <th>Device</th>
                 <th>Plant Count</th>
-                <th>Total Harvest (g)</th>
+                <th>Strawberries Harvested</th>
                 <th>Status</th>
                 <th>Join Date</th>
                 <th>Actions</th>
@@ -76,7 +76,7 @@
                   <span class="plant-count">{{ user.plantCount }}</span>
                 </td>
                 <td>
-                  <span class="harvest-total">{{ user.totalHarvest }}g</span>
+                  <span class="harvest-total">{{ user.totalHarvest }} </span>
                 </td>
                 <td>
                   <span :class="['status-badge', user.status.toLowerCase()]">
@@ -94,6 +94,15 @@
                       @click="deleteUser(user.id)"
                     >
                       🗑️
+                    </button>
+                    <button class="action-btn chat" @click="openChat(user)">
+                      💬 Chat
+                    </button>
+                    <button
+                      class="action-btn graph"
+                      @click="viewUserGraph(user)"
+                    >
+                      📊 Performance
                     </button>
                     <button
                       class="action-btn view"
@@ -116,6 +125,9 @@
             ← Back to User List
           </button>
           <h2>{{ selectedUser.name }} - Detailed Profile</h2>
+          <button class="chat-btn" @click="openChat(selectedUser)">
+            💬 Chat with {{ selectedUser.name }}
+          </button>
         </div>
 
         <div class="user-details-grid">
@@ -154,20 +166,14 @@
             <h3>🌾 Harvest Summary</h3>
             <div class="harvest-stats">
               <div class="stat-item">
-                <div class="stat-value">{{ selectedUser.totalHarvest }}g</div>
-                <div class="stat-label">Total Yield</div>
+                <div class="stat-value">{{ selectedUser.totalHarvest }}</div>
+                <div class="stat-label">Strawberries Harvested</div>
               </div>
               <div class="stat-item">
                 <div class="stat-value">
                   {{ getUserHarvestCount(selectedUser) }}
                 </div>
                 <div class="stat-label">Total Harvests</div>
-              </div>
-              <div class="stat-item">
-                <div class="stat-value">
-                  {{ getUserAverageYield(selectedUser) }}g
-                </div>
-                <div class="stat-label">Average Yield</div>
               </div>
             </div>
           </div>
@@ -217,10 +223,12 @@
                 :key="harvest.id"
                 class="harvest-item"
               >
-                <div class="harvest-date">{{ formatDate(harvest.date) }}</div>
-                <div class="harvest-details">
-                  <strong>{{ harvest.plantName }}</strong>
-                  <span class="harvest-yield">{{ harvest.yield }}g</span>
+                <div class="harvest-detail-box">
+                  <div class="harvest-date">{{ formatDate(harvest.date) }}</div>
+                  <div class="harvest-details">
+                    <strong>{{ harvest.plantName }}</strong>
+                    <span class="harvest-yield">{{ harvest.yield }} 🍓</span>
+                  </div>
                 </div>
                 <div class="harvest-quality">
                   <span
@@ -318,7 +326,7 @@
               <th>Harvest Date</th>
               <th>Plant</th>
               <th>Owner</th>
-              <th>Yield (g)</th>
+              <th>Strawberries</th>
               <th>Quality</th>
               <th>Growth Duration</th>
               <th>Notes</th>
@@ -331,7 +339,7 @@
               <td>{{ harvest.plantName }}</td>
               <td>{{ harvest.owner }}</td>
               <td>
-                <strong>{{ harvest.yield }}g</strong>
+                <strong>{{ harvest.yield }}</strong>
               </td>
               <td>
                 <span :class="['quality-badge', harvest.quality.toLowerCase()]">
@@ -346,7 +354,7 @@
                     class="action-btn view"
                     @click="viewHarvestDetails(harvest)"
                   >
-                    📊
+                    👁️
                   </button>
                   <button class="action-btn edit" @click="editHarvest(harvest)">
                     ✏️
@@ -392,6 +400,183 @@
         </form>
       </div>
     </div>
+
+    <!-- Chat Modal -->
+    <div v-if="showChatModal" class="modal-overlay" @click="closeChatModal">
+      <div class="chat-modal" @click.stop>
+        <div class="chat-header">
+          <h3>💬 Chat with {{ chatUser?.name }}</h3>
+          <button class="close-btn" @click="closeChatModal">✕</button>
+        </div>
+
+        <div class="chat-messages" ref="chatMessages">
+          <div
+            v-for="message in chatMessages"
+            :key="message.id"
+            :class="['message', message.sender]"
+          >
+            <div class="message-content">{{ message.content }}</div>
+            <div class="message-time">{{ formatTime(message.timestamp) }}</div>
+          </div>
+        </div>
+
+        <div class="chat-input">
+          <input
+            v-model="newMessage"
+            @keyup.enter="sendMessage"
+            placeholder="Type your message..."
+            class="message-input"
+          />
+          <button
+            @click="sendMessage"
+            class="send-btn"
+            :disabled="!newMessage.trim()"
+          >
+            Send
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Harvest Graph Modal -->
+    <div v-if="showGraphModal" class="modal-overlay" @click="closeGraphModal">
+      <div class="graph-modal" @click.stop>
+        <div class="graph-header">
+          <h3>📊 Performance Analysis - {{ selectedUser?.name }}</h3>
+          <button class="close-btn" @click="closeGraphModal">✕</button>
+        </div>
+
+        <div class="graph-content">
+          <div class="graph-tabs">
+            <button
+              :class="['graph-tab', { active: activeGraphTab === 'trend' }]"
+              @click="activeGraphTab = 'trend'"
+            >
+              📈 Harvest Trends
+            </button>
+            <button
+              :class="['graph-tab', { active: activeGraphTab === 'quality' }]"
+              @click="activeGraphTab = 'quality'"
+            >
+              ⭐ Quality Performance
+            </button>
+            <button
+              :class="[
+                'graph-tab',
+                { active: activeGraphTab === 'comparison' },
+              ]"
+              @click="activeGraphTab = 'comparison'"
+            >
+              🏆 Plant Performance
+            </button>
+          </div>
+
+          <div class="graph-container">
+            <!-- Trend Analysis Chart -->
+            <div v-if="activeGraphTab === 'trend'" class="chart-section">
+              <h4>{{ selectedUser?.name }}'s Harvest Performance Over Time</h4>
+              <div class="chart-placeholder">
+                <div class="chart-bars">
+                  <div
+                    v-for="(data, index) in trendData"
+                    :key="index"
+                    class="chart-bar"
+                    :style="{
+                      height:
+                        (data.value /
+                          Math.max(...trendData.map((d) => d.value))) *
+                          200 +
+                        'px',
+                    }"
+                  >
+                    <span class="bar-value">{{ data.value }}</span>
+                    <span class="bar-label">{{ data.label }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Quality Distribution Chart -->
+            <div v-if="activeGraphTab === 'quality'" class="chart-section">
+              <h4>{{ selectedUser?.name }}'s Quality Performance</h4>
+              <div class="chart-placeholder">
+                <div class="pie-chart">
+                  <div
+                    v-for="(data, index) in qualityData"
+                    :key="index"
+                    class="pie-segment"
+                    :style="{
+                      '--percentage': data.percentage + '%',
+                      '--color': data.color,
+                      '--offset': getPieOffset(index),
+                    }"
+                  >
+                    <span class="segment-label"
+                      >{{ data.label }}: {{ data.value }}</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Plant Comparison Chart -->
+            <div v-if="activeGraphTab === 'comparison'" class="chart-section">
+              <h4>{{ selectedUser?.name }}'s Plant Performance</h4>
+              <div class="chart-placeholder">
+                <div class="comparison-chart">
+                  <div
+                    v-for="(data, index) in comparisonData"
+                    :key="index"
+                    class="comparison-bar"
+                  >
+                    <span class="comparison-label">{{ data.plant }}</span>
+                    <div
+                      class="comparison-bar-fill"
+                      :style="{
+                        width:
+                          (data.yield /
+                            Math.max(...comparisonData.map((d) => d.yield))) *
+                            100 +
+                          '%',
+                      }"
+                    >
+                      <span class="comparison-value">{{ data.yield }} 🍓</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="graph-stats">
+            <div class="stat-card">
+              <h5>Total Harvests</h5>
+              <span class="stat-number">{{
+                getTotalHarvests(selectedUser)
+              }}</span>
+            </div>
+            <div class="stat-card">
+              <h5>Average Yield</h5>
+              <span class="stat-number"
+                >{{ getAverageYield(selectedUser) }} 🍓</span
+              >
+            </div>
+            <div class="stat-card">
+              <h5>Best Quality</h5>
+              <span class="stat-number">{{
+                getBestQuality(selectedUser)
+              }}</span>
+            </div>
+            <div class="stat-card">
+              <h5>Plant Count</h5>
+              <span class="stat-number"
+                >{{ selectedUser?.plantCount }} plants</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -409,6 +594,15 @@ export default {
       harvestDateFilter: "",
       showAddUserModal: false,
       showAddHarvestModal: false,
+      // Chat functionality
+      showChatModal: false,
+      chatUser: null,
+      newMessage: "",
+      chatMessages: [],
+      // Graph functionality
+      showGraphModal: false,
+      selectedUser: null,
+      activeGraphTab: "trend",
       tabs: [
         { id: "users", label: "User Management" },
         { id: "harvests", label: "Harvest Records" },
@@ -420,7 +614,7 @@ export default {
           email: "pailindeelertpattana@gmail.com",
           device: "Raspberry Pi",
           plantCount: 3,
-          totalHarvest: 445,
+          totalHarvest: 28,
           status: "Active",
           joinDate: "2024-01-02",
           lastActive: "2024-01-20",
@@ -431,7 +625,7 @@ export default {
           email: "erikkms@gmail.com",
           device: "Phone",
           plantCount: 2,
-          totalHarvest: 295,
+          totalHarvest: 18,
           status: "Active",
           joinDate: "2024-01-03",
           lastActive: "2024-01-19",
@@ -442,7 +636,7 @@ export default {
           email: "zimmyzmmt@gmail.com",
           device: "Raspberry Pi",
           plantCount: 1,
-          totalHarvest: 380,
+          totalHarvest: 24,
           status: "Active",
           joinDate: "2024-01-04",
           lastActive: "2024-01-20",
@@ -453,7 +647,7 @@ export default {
           email: "blossomppg@gmail.com",
           device: "Raspberry Pi",
           plantCount: 0,
-          totalHarvest: 120,
+          totalHarvest: 7,
           status: "Inactive",
           joinDate: "2024-01-08",
           lastActive: "2024-01-10",
@@ -500,7 +694,7 @@ export default {
           date: "2024-01-18",
           plantName: "Strawberry Plant #1",
           owner: "Pailinnn",
-          yield: 150,
+          yield: 9,
           quality: "Excellent",
           growthDuration: 65,
           notes: "Perfect ripeness, great size",
@@ -510,7 +704,7 @@ export default {
           date: "2024-01-16",
           plantName: "Strawberry Plant #2",
           owner: "Erikkk",
-          yield: 95,
+          yield: 6,
           quality: "Good",
           growthDuration: 58,
           notes: "Slightly small but tasty",
@@ -520,7 +714,7 @@ export default {
           date: "2024-01-14",
           plantName: "Strawberry Plant #3",
           owner: "Zimmyyy",
-          yield: 200,
+          yield: 12,
           quality: "Excellent",
           growthDuration: 72,
           notes: "Outstanding yield and quality",
@@ -530,7 +724,7 @@ export default {
           date: "2024-01-12",
           plantName: "Strawberry Plant #4",
           owner: "Pailinnn",
-          yield: 180,
+          yield: 11,
           quality: "Good",
           growthDuration: 60,
           notes: "Good harvest overall",
@@ -575,6 +769,64 @@ export default {
       return this.harvests.filter(
         (harvest) => harvest.date === this.harvestDateFilter
       );
+    },
+
+    // Graph data computed properties
+    trendData() {
+      if (!this.selectedUser) return [];
+      const userHarvests = this.harvests.filter(
+        (h) => h.owner === this.selectedUser.name
+      );
+      return userHarvests.map((harvest, index) => ({
+        label: `Harvest ${index + 1}`,
+        value: harvest.yield,
+        date: harvest.date,
+        plant: harvest.plantName,
+      }));
+    },
+
+    qualityData() {
+      if (!this.selectedUser) return [];
+      const userHarvests = this.harvests.filter(
+        (h) => h.owner === this.selectedUser.name
+      );
+      const qualityCount = userHarvests.reduce((acc, harvest) => {
+        acc[harvest.quality] = (acc[harvest.quality] || 0) + 1;
+        return acc;
+      }, {});
+
+      const total = userHarvests.length;
+      const colors = {
+        Excellent: "#28a745",
+        Good: "#ffc107",
+        Fair: "#fd7e14",
+        Poor: "#dc3545",
+      };
+
+      return Object.entries(qualityCount).map(([quality, count]) => ({
+        label: quality,
+        value: count,
+        percentage: Math.round((count / total) * 100),
+        color: colors[quality] || "#6c757d",
+      }));
+    },
+
+    comparisonData() {
+      if (!this.selectedUser) return [];
+      const userHarvests = this.harvests.filter(
+        (h) => h.owner === this.selectedUser.name
+      );
+      const plantNames = [...new Set(userHarvests.map((h) => h.plantName))];
+
+      return plantNames.map((plantName) => {
+        const harvests = userHarvests.filter((h) => h.plantName === plantName);
+        const totalYield = harvests.reduce((sum, h) => sum + h.yield, 0);
+        return {
+          plant: plantName,
+          yield: totalYield,
+          count: harvests.length,
+        };
+      });
     },
   },
   methods: {
@@ -636,6 +888,48 @@ export default {
     viewHarvestDetails(harvest) {
       console.log("View harvest details:", harvest);
     },
+
+    // Graph methods
+    viewUserGraph(user) {
+      this.selectedUser = user;
+      this.showGraphModal = true;
+      this.activeGraphTab = "trend";
+    },
+
+    closeGraphModal() {
+      this.showGraphModal = false;
+      this.selectedUser = null;
+      this.activeGraphTab = "trend";
+    },
+
+    getTotalHarvests(user) {
+      if (!user) return 0;
+      return this.harvests.filter((h) => h.owner === user.name).length;
+    },
+
+    getAverageYield(user) {
+      if (!user) return 0;
+      const userHarvests = this.harvests.filter((h) => h.owner === user.name);
+      if (userHarvests.length === 0) return 0;
+      const total = userHarvests.reduce((sum, h) => sum + h.yield, 0);
+      return Math.round(total / userHarvests.length);
+    },
+
+    getBestQuality(user) {
+      if (!user) return "N/A";
+      const userHarvests = this.harvests.filter((h) => h.owner === user.name);
+      if (userHarvests.length === 0) return "N/A";
+      const qualities = userHarvests.map((h) => h.quality);
+      const qualityOrder = { Excellent: 4, Good: 3, Fair: 2, Poor: 1 };
+      return qualities.reduce((best, current) =>
+        qualityOrder[current] > qualityOrder[best] ? current : best
+      );
+    },
+
+    getPieOffset(index) {
+      const offsets = [0, 25, 50, 75];
+      return offsets[index] || 0;
+    },
     editHarvest(harvest) {
       console.log("Edit harvest:", harvest);
     },
@@ -652,6 +946,89 @@ export default {
       this.users.push(newUser);
       this.newUser = { name: "", email: "", device: "Raspberry Pi" };
       this.showAddUserModal = false;
+    },
+
+    // Chat methods
+    openChat(user) {
+      this.chatUser = user;
+      this.showChatModal = true;
+      this.loadChatMessages(user.id);
+      this.$nextTick(() => {
+        this.scrollToBottom();
+      });
+    },
+
+    closeChatModal() {
+      this.showChatModal = false;
+      this.chatUser = null;
+      this.newMessage = "";
+      this.chatMessages = [];
+    },
+
+    loadChatMessages(userId) {
+      // Load existing chat messages for this user
+      // For now, we'll use sample data
+      this.chatMessages = [
+        {
+          id: 1,
+          content: "Hello! How are your strawberries growing?",
+          sender: "admin",
+          timestamp: new Date(Date.now() - 3600000), // 1 hour ago
+        },
+        {
+          id: 2,
+          content:
+            "Hi! They're doing great! I just harvested 5 strawberries today.",
+          sender: "user",
+          timestamp: new Date(Date.now() - 1800000), // 30 minutes ago
+        },
+        {
+          id: 3,
+          content: "That's wonderful! Keep up the great work!",
+          sender: "admin",
+          timestamp: new Date(Date.now() - 900000), // 15 minutes ago
+        },
+      ];
+    },
+
+    sendMessage() {
+      if (!this.newMessage.trim()) return;
+
+      const message = {
+        id: Date.now(),
+        content: this.newMessage.trim(),
+        sender: "admin",
+        timestamp: new Date(),
+      };
+
+      this.chatMessages.push(message);
+      this.newMessage = "";
+
+      this.$nextTick(() => {
+        this.scrollToBottom();
+      });
+
+      // Here you would typically send the message to a backend API
+      console.log(
+        "Sending message to",
+        this.chatUser.name,
+        ":",
+        message.content
+      );
+    },
+
+    scrollToBottom() {
+      const chatMessages = this.$refs.chatMessages;
+      if (chatMessages) {
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }
+    },
+
+    formatTime(timestamp) {
+      return new Date(timestamp).toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+      });
     },
   },
 };

@@ -1,12 +1,12 @@
 /* SignUp Component Styles */
 .signup-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, #8AB58A 0%, #A8D4A8 100%);
+  background: linear-gradient(135deg, #896c5f 0%, #5d4539 100%);
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 20px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .form-container {
@@ -28,7 +28,7 @@
 }
 
 .welcome-text span {
-  color: #4CAF50;
+  color: #896c5f;
   font-weight: 800;
 }
 
@@ -65,7 +65,7 @@
 
 .form-group input:focus {
   outline: none;
-  border-color: #4CAF50;
+  border-color: #896c5f;
   box-shadow: 0 0 0 4px rgba(76, 175, 80, 0.1);
   transform: translateY(-1px);
 }
@@ -73,7 +73,7 @@
 .btn-main {
   width: 100%;
   padding: 16px 24px;
-  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  background: linear-gradient(135deg, #896c5f 0%, #6b4c3f 100%);
   color: white;
   border: none;
   border-radius: 12px;
@@ -81,15 +81,15 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+  box-shadow: 0 2px 10px rgba(91, 91, 91, 0.3);
   letter-spacing: 0.5px;
   margin-top: 16px;
 }
 
 .btn-main:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
-  background: linear-gradient(135deg, #45a049 0%, #3d8b40 100%);
+  box-shadow: 0 2px 10px rgba(91, 91, 91, 0.3);
+  background: linear-gradient(135deg, #6b4c3f 0%, #5d4539 100%);
 }
 
 .login-link {
@@ -99,7 +99,7 @@
 }
 
 .login-link span {
-  color: #4CAF50;
+  color: #896c5f;
   font-weight: 600;
   cursor: pointer;
   text-decoration: underline;
@@ -107,7 +107,7 @@
 }
 
 .login-link span:hover {
-  color: #45a049;
+  color: #6b4c3f;
   text-decoration: none;
   text-shadow: 0 1px 3px rgba(76, 175, 80, 0.3);
 }
@@ -117,11 +117,11 @@
   .signup-page {
     padding: 15px;
   }
-  
+
   .form-container {
     padding: 32px 24px;
   }
-  
+
   .welcome-text {
     font-size: 24px;
   }

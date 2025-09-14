@@ -1,7 +1,7 @@
 .add-plant-btn {
   width: 100%;
   padding: 20px 24px;
-  background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+  background: linear-gradient(135deg, #896c5f 0%, #6b4c3f 100%);
   color: white;
   border: none;
   border-radius: 16px;
@@ -17,7 +17,7 @@
 .add-plant-btn:hover {
   transform: translateY(-3px);
   box-shadow: 0 8px 30px rgba(76, 175, 80, 0.4);
-  background: linear-gradient(135deg, #45a049 0%, #3d8b40 100%);
+  background: linear-gradient(135deg, #6b4c3f 0%, #5d4539 100%);
 }
 
 .add-icon {
@@ -101,7 +101,7 @@
 }
 
 .option.selected .option-icon {
-  background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+  background: linear-gradient(135deg, #896c5f 0%, #6b4c3f 100%);
 }
 
 .option-icon i {

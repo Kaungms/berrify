@@ -1,7 +1,7 @@
 /* Hardware Analysis Component Styles */
 .profile-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, #8AB58A 0%, #A8D4A8 100%);
+  background: linear-gradient(135deg, #8ab58a 0%, #a8d4a8 100%);
   padding: 24px;
   color: white;
 }
@@ -100,12 +100,12 @@
 }
 
 .scan-done {
-  color: #4CAF50 !important;
+  color: #896c5f !important;
   font-weight: 700 !important;
 }
 
 .thank-you-message {
-  color: #4CAF50 !important;
+  color: #896c5f !important;
   font-weight: 600 !important;
   font-size: 16px !important;
   text-align: center;
@@ -113,7 +113,7 @@
 }
 
 .view-results-button {
-  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  background: linear-gradient(135deg, #896c5f 0%, #6b4c3f 100%);
   border: none;
   border-radius: 12px;
   padding: 15px 60px;
@@ -133,7 +133,7 @@
 }
 
 .view-results-button:hover {
-  background: linear-gradient(135deg, #45a049 0%, #3d8b40 100%);
+  background: linear-gradient(135deg, #6b4c3f 0%, #3d8b40 100%);
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
 }
