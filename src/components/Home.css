@@ -155,13 +155,14 @@ body {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
-
   gap: 12px;
-  padding: 0 16px 16px;
+  padding: 20px 0 20px 24px;
   max-width: 100vw;
   box-sizing: border-box;
-
   scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  align-items: center;
+  position: relative;
 }
 
 .scroll-container::-webkit-scrollbar {
@@ -170,33 +171,37 @@ body {
 
 .scroll-card {
   flex: 0 0 auto;
-  width: 80px;
-  margin-left: 5px;
-  margin-right: 5px;
+  width: 100px;
   text-align: center;
   scroll-snap-align: start;
   scroll-snap-stop: always;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
 }
 
 .scroll-card img {
-  width: 85px;
-  height: 85px;
+  width: 90px;
+  height: 90px;
   object-fit: cover;
   border-radius: 50%;
-  border: 2px solid #ccc;
-  background-color: white;
-  transition: transform 0.2s ease-in-out;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
 }
 
-.scroll-card img:hover {
+.scroll-card:hover img {
   transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
 }
 
 .scroll-card p {
-  margin-top: 0.4rem;
-  font-size: 0.75rem;
-  color: #333;
-  line-height: 1;
+  margin-top: 12px;
+  font-size: 0.8rem;
+  color: white;
+  font-weight: 600;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  line-height: 1.2;
+  text-align: center;
 }
 
 /* My strawberry Horizontal Scroll Cards */

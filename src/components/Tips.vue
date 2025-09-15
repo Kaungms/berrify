@@ -146,6 +146,95 @@
         </button>
       </div>
 
+      <!-- Strawberry Storage Tips Section -->
+      <div class="jam-card" style="margin-top: 32px">
+        <h2>Strawberry Storage Tips</h2>
+        <img src="/storage.png" alt="Fresh Strawberries" />
+        <div class="recipe-text" :class="{ collapsed: !expanded.storage }">
+          <h3>Short-Term (2–7 Days):</h3>
+          <ul>
+            <li>Do not wash until ready to eat (moisture speeds mold).</li>
+            <li>Remove bruised or moldy berries right away.</li>
+            <li>Line container with paper towel to absorb moisture.</li>
+            <li>Store in a shallow container, avoid stacking heavy layers.</li>
+            <li>Keep refrigerated at 0–4 °C with light airflow.</li>
+          </ul>
+
+          <h3>Long-Term (Up to 1 Year):</h3>
+          <ul>
+            <li>Wash, dry completely, and remove stems.</li>
+            <li>
+              Freeze on a tray first, then store in sealed bags or containers.
+            </li>
+            <li>
+              Optional: coat in sugar or puree before freezing for better
+              texture.
+            </li>
+          </ul>
+
+          <h3>Alternative Preservation:</h3>
+          <ul>
+            <li>Make jam, jelly, or syrup for shelf-stable storage.</li>
+            <li>Dehydrate or freeze-dry for light, crispy snacks.</li>
+            <li>
+              Ferment into vinegar or wine for unique use and longer shelf life.
+            </li>
+          </ul>
+        </div>
+
+        <button
+          class="toggle-arrow"
+          @click="expanded.storage = !expanded.storage"
+        >
+          <span v-if="expanded.storage">▲</span>
+          <span v-else>▼</span>
+        </button>
+      </div>
+
+      <!-- Strawberry Plant Care Section -->
+      <div class="jam-card" style="margin-top: 32px">
+        <h2>How to take care of your strawberry?</h2>
+        <img src="/caring.png" alt="Strawberry Plant" />
+        <div class="recipe-text" :class="{ collapsed: !expanded.care }">
+          <h3>☀️ Sunlight</h3>
+          <ul>
+            <li>
+              Needs at least <span class="highlight">6–8 hours</span> of direct
+              sunlight daily.
+            </li>
+            <li>Grow in a bright, open area for best yield.</li>
+          </ul>
+
+          <h3>💧 Watering</h3>
+          <ul>
+            <li>Keep soil evenly moist, not soggy.</li>
+            <li>Water at the base, avoid wetting leaves to prevent fungus.</li>
+          </ul>
+
+          <h3>🌱 Soil & Fertilizer</h3>
+          <ul>
+            <li>Use well-draining soil rich in organic matter.</li>
+            <li>Add compost or balanced fertilizer every 4–6 weeks.</li>
+          </ul>
+
+          <h3>✂️ Maintenance</h3>
+          <ul>
+            <li>Remove yellow leaves and weeds regularly.</li>
+            <li>Pinch off first flowers so plants grow stronger.</li>
+          </ul>
+
+          <h3>🍓 Harvesting</h3>
+          <ul>
+            <li>Pick when berries are fully red for best flavor.</li>
+            <li>Harvest every 2–3 days during peak season.</li>
+          </ul>
+        </div>
+        <button class="toggle-arrow" @click="expanded.care = !expanded.care">
+          <span v-if="expanded.care">▲</span>
+          <span v-else>▼</span>
+        </button>
+      </div>
+
       <!-- Bottom Icon Navigation -->
       <div class="icon-nav">
         <div class="nav-item" @click="$router.push('/home')">
@@ -179,6 +268,9 @@ export default {
       expanded: {
         cycle: false,
         jam: false,
+        harvest: false,
+        storage: false,
+        care: false,
       },
     };
   },

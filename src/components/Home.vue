@@ -19,7 +19,12 @@
       <h1>Tips</h1>
 
       <div class="scroll-container">
-        <div class="scroll-card" v-for="item in cards" :key="item.label">
+        <div
+          class="scroll-card"
+          v-for="item in cards"
+          :key="item.label"
+          @click="navigateToTips"
+        >
           <img :src="item.image" :alt="item.label" />
           <p>{{ item.label }}</p>
         </div>
@@ -105,6 +110,7 @@ export default {
         { label: "Recipe", image: "/recipe.png" },
         { label: "Storage", image: "/storage.png" },
         { label: "Caring", image: "/caring.png" },
+        { label: "Cycle", image: "/cycle.png" },
       ],
       strawberries: [
         { label: "Strawberry 1", image: "/strawberries.png" },
@@ -114,6 +120,11 @@ export default {
         { label: "Strawberry 5", image: "/strawberries.png" },
       ],
     };
+  },
+  methods: {
+    navigateToTips() {
+      this.$router.push("/tips");
+    },
   },
 };
 </script>

@@ -132,6 +132,11 @@
   font-size: 16px;
 }
 
+.recipe-text .highlight {
+  color: #896c5f;
+  font-weight: 700;
+}
+
 /* Collapsed state */
 .cycle-steps.collapsed,
 .recipe-text.collapsed {
