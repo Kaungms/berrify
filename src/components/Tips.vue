@@ -1,9 +1,9 @@
 <template>
   <div class="page-container">
     <!-- Back Button -->
-    <div class="back-button" @click="$router.push('/home')">
+    <!-- <div class="back-button" @click="$router.push('/home')">
       <i class="fas fa-arrow-left"></i>
-    </div>
+    </div> -->
 
     <!-- Page Header -->
     <div class="page-header">
@@ -15,7 +15,6 @@
       <!-- Strawberry Cycle Section -->
       <div class="cycle-card">
         <h2>Strawberry Cycle</h2>
-        <img src="/strawberry_cycle.png" alt="Strawberry Cycle" />
         <ul class="cycle-steps" :class="{ collapsed: !expanded.cycle }">
           <li>
             <span class="highlight">Germination</span> - Seeds sprout and grow
@@ -46,16 +45,16 @@
             runners or go dormant.
           </li>
         </ul>
-        <button class="toggle-arrow" @click="expanded.cycle = !expanded.cycle">
-          <span v-if="expanded.cycle">▲</span>
-          <span v-else>▼</span>
+        <button class="toggle-button" @click="expanded.cycle = !expanded.cycle">
+          <span v-if="expanded.cycle">Read less</span>
+          <span v-else>Read more...</span>
         </button>
+        <img src="/strawberry_cycle.png" alt="Strawberry Cycle" />
       </div>
 
       <!-- Strawberry Jam Recipe Section -->
       <div class="jam-card" style="margin-top: 32px">
         <h2>Strawberry Jam Recipe</h2>
-        <img src="/jam-image.png" alt="Jam Jar" />
         <div class="recipe-text" :class="{ collapsed: !expanded.jam }">
           <h3>Ingredients:</h3>
           <ul>
@@ -77,16 +76,16 @@
             </li>
           </ol>
         </div>
-        <button class="toggle-arrow" @click="expanded.jam = !expanded.jam">
-          <span v-if="expanded.jam">▲</span>
-          <span v-else>▼</span>
+        <button class="toggle-button" @click="expanded.jam = !expanded.jam">
+          <span v-if="expanded.jam">Read less</span>
+          <span v-else>Read more...</span>
         </button>
+        <img src="/jam-image.png" alt="Jam Jar" />
       </div>
 
       <!-- Strawberry Harvest Tips Section -->
       <div class="jam-card" style="margin-top: 32px">
         <h2>Strawberry Harvest Tips</h2>
-        <img src="/harvest.png" alt="Strawberries Ready to Pick" />
         <div class="recipe-text" :class="{ collapsed: !expanded.harvest }">
           <h3>When to Harvest:</h3>
           <ul>
@@ -96,7 +95,7 @@
             </li>
             <li>Berries should be firm but slightly soft to the touch.</li>
             <li>
-              Harvest in the morning when it’s cool for best flavor and shelf
+              Harvest in the morning when it's cool for best flavor and shelf
               life.
             </li>
             <li>Check plants every 1–3 days during peak season.</li>
@@ -138,18 +137,18 @@
           </ul>
         </div>
         <button
-          class="toggle-arrow"
+          class="toggle-button"
           @click="expanded.harvest = !expanded.harvest"
         >
-          <span v-if="expanded.harvest">▲</span>
-          <span v-else>▼</span>
+          <span v-if="expanded.harvest">Read less</span>
+          <span v-else>Read more...</span>
         </button>
+        <img src="/harvest.png" alt="Strawberries Ready to Pick" />
       </div>
 
       <!-- Strawberry Storage Tips Section -->
       <div class="jam-card" style="margin-top: 32px">
         <h2>Strawberry Storage Tips</h2>
-        <img src="/storage.png" alt="Fresh Strawberries" />
         <div class="recipe-text" :class="{ collapsed: !expanded.storage }">
           <h3>Short-Term (2–7 Days):</h3>
           <ul>
@@ -183,18 +182,18 @@
         </div>
 
         <button
-          class="toggle-arrow"
+          class="toggle-button"
           @click="expanded.storage = !expanded.storage"
         >
-          <span v-if="expanded.storage">▲</span>
-          <span v-else>▼</span>
+          <span v-if="expanded.storage">Read less</span>
+          <span v-else>Read more...</span>
         </button>
+        <img src="/storage.png" alt="Fresh Strawberries" />
       </div>
 
       <!-- Strawberry Plant Care Section -->
       <div class="jam-card" style="margin-top: 32px">
         <h2>How to take care of your strawberry?</h2>
-        <img src="/caring.png" alt="Strawberry Plant" />
         <div class="recipe-text" :class="{ collapsed: !expanded.care }">
           <h3>☀️ Sunlight</h3>
           <ul>
@@ -229,10 +228,11 @@
             <li>Harvest every 2–3 days during peak season.</li>
           </ul>
         </div>
-        <button class="toggle-arrow" @click="expanded.care = !expanded.care">
-          <span v-if="expanded.care">▲</span>
-          <span v-else>▼</span>
+        <button class="toggle-button" @click="expanded.care = !expanded.care">
+          <span v-if="expanded.care">Read less</span>
+          <span v-else>Read more...</span>
         </button>
+        <img src="/caring.png" alt="Strawberry Plant" />
       </div>
 
       <!-- Bottom Icon Navigation -->
@@ -247,7 +247,6 @@
           <i class="fas fa-seedling"></i>
         </div>
         <div class="nav-item" @click="$router.push('/setting')">
-          >
           <i class="fas fa-cog"></i>
         </div>
         <div class="nav-item" @click="$router.push('/profile')">

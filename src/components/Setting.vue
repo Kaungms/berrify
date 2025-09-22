@@ -47,7 +47,6 @@
           <i class="fas fa-seedling"></i>
         </div>
         <div class="nav-item" @click="$router.push('/setting')">
-          >
           <i class="fas fa-cog"></i>
         </div>
         <div class="nav-item" @click="$router.push('/profile')">

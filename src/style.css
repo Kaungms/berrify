@@ -152,7 +152,7 @@ body {
   padding-top: 100px !important;
   box-sizing: border-box !important;
   overflow-x: hidden !important;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .page-header {
@@ -165,7 +165,7 @@ body {
   font-size: 32px !important;
   font-weight: 700 !important;
   margin: 0 !important;
-  text-align: center !important;
+  text-align: left !important;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
 }
 

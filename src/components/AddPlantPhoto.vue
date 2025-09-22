@@ -15,14 +15,15 @@
     <div class="page-content">
       <!-- Upload Area -->
       <div class="upload-section">
-        <div class="upload-area" 
-             :class="{ 'has-image': selectedImage, 'drag-over': isDragOver }"
-             @click="triggerFileInput"
-             @drop="handleDrop"
-             @dragover.prevent="isDragOver = true"
-             @dragleave="isDragOver = false"
-             @dragenter.prevent>
-          
+        <div
+          class="upload-area"
+          :class="{ 'has-image': selectedImage, 'drag-over': isDragOver }"
+          @click="triggerFileInput"
+          @drop="handleDrop"
+          @dragover.prevent="isDragOver = true"
+          @dragleave="isDragOver = false"
+          @dragenter.prevent
+        >
           <!-- Upload Icon and Text -->
           <div v-if="!selectedImage" class="upload-content">
             <div class="upload-icon">
@@ -46,12 +47,12 @@
         </div>
 
         <!-- Hidden File Input -->
-        <input 
+        <input
           ref="fileInput"
           type="file"
           accept="image/*"
           @change="handleFileSelect"
-          style="display: none;"
+          style="display: none"
         />
       </div>
 
@@ -102,8 +103,8 @@
           <i class="fas fa-arrow-left"></i>
           Back
         </button>
-        <button 
-          class="btn-primary" 
+        <button
+          class="btn-primary"
           @click="savePlantWithPhoto"
           :disabled="!selectedImage"
         >
@@ -131,18 +132,18 @@
 </template>
 
 <script>
-import { notify } from '../services/NotificationService';
-import './AddPlantPhoto.css';
+import { notify } from "../services/NotificationService";
+import "./AddPlantPhoto.css";
 
 export default {
-  name: 'AddPlantPhoto',
+  name: "AddPlantPhoto",
   data() {
     return {
       selectedImage: null,
       imagePreview: null,
       isDragOver: false,
-      plantName: 'New Plant',
-      plantMode: 'phone'
+      plantName: "New Plant",
+      plantMode: "phone",
     };
   },
   mounted() {
@@ -158,85 +159,85 @@ export default {
       if (this.$route.query.mode) {
         this.plantMode = this.$route.query.mode;
       }
-      
+
       // Fallback to localStorage
-      const storedPlantName = localStorage.getItem('newPlantName');
-      const storedPlantMode = localStorage.getItem('newPlantMode');
-      
+      const storedPlantName = localStorage.getItem("newPlantName");
+      const storedPlantMode = localStorage.getItem("newPlantMode");
+
       if (storedPlantName) this.plantName = storedPlantName;
       if (storedPlantMode) this.plantMode = storedPlantMode;
     },
-    
+
     triggerFileInput() {
       this.$refs.fileInput.click();
     },
-    
+
     handleFileSelect(event) {
       const file = event.target.files[0];
       if (file) {
         this.processSelectedFile(file);
       }
     },
-    
+
     handleDrop(event) {
       event.preventDefault();
       this.isDragOver = false;
-      
+
       const files = event.dataTransfer.files;
       if (files.length > 0) {
         const file = files[0];
-        if (file.type.startsWith('image/')) {
+        if (file.type.startsWith("image/")) {
           this.processSelectedFile(file);
         } else {
-          notify.error('Please select a valid image file.');
+          notify.error("Please select a valid image file.");
         }
       }
     },
-    
+
     processSelectedFile(file) {
       // Validate file type
-      const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
+      const validTypes = ["image/jpeg", "image/jpg", "image/png", "image/webp"];
       if (!validTypes.includes(file.type)) {
-        notify.error('Please select a JPG, PNG, or WEBP image.');
+        notify.error("Please select a JPG, PNG, or WEBP image.");
         return;
       }
-      
+
       // Validate file size (max 10MB)
       const maxSize = 10 * 1024 * 1024; // 10MB
       if (file.size > maxSize) {
-        notify.error('Image size should be less than 10MB.');
+        notify.error("Image size should be less than 10MB.");
         return;
       }
-      
+
       this.selectedImage = file;
-      
+
       // Create preview
       const reader = new FileReader();
       reader.onload = (e) => {
         this.imagePreview = e.target.result;
-        notify.success('Photo selected successfully! 📸');
+        notify.success("Photo selected successfully! 📸");
       };
       reader.readAsDataURL(file);
     },
-    
+
     formatFileSize(bytes) {
-      if (bytes === 0) return '0 Bytes';
+      if (bytes === 0) return "0 Bytes";
       const k = 1024;
-      const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+      const sizes = ["Bytes", "KB", "MB", "GB"];
       const i = Math.floor(Math.log(bytes) / Math.log(k));
-      return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+      return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
     },
-    
+
     async savePlantWithPhoto() {
       if (!this.selectedImage) {
-        notify.warning('Please select a photo first.');
+        notify.warning("Please select a photo first.");
         return;
       }
-      
+
       try {
         // Convert image to base64 for storage
         const base64Image = await this.convertToBase64(this.selectedImage);
-        
+
         // Create plant object with photo
         const plantData = {
           name: this.plantName,
@@ -244,58 +245,59 @@ export default {
           photo: base64Image,
           photoName: this.selectedImage.name,
           photoSize: this.selectedImage.size,
-          dateAdded: new Date().toISOString()
+          dateAdded: new Date().toISOString(),
         };
-        
+
         // Store plant data
-        localStorage.setItem('newPlantWithPhoto', JSON.stringify(plantData));
-        
+        localStorage.setItem("newPlantWithPhoto", JSON.stringify(plantData));
+
         notify.success(`${this.plantName} saved with photo! 🌱`);
-        
+
         // Navigate back to diary to complete the plant addition
-        this.$router.push('/my-diary?addPlantWithPhoto=true');
-        
+        this.$router.push("/my-diary?addPlantWithPhoto=true");
       } catch (error) {
-        console.error('Error saving plant photo:', error);
-        notify.error('Failed to save photo. Please try again.');
+        console.error("Error saving plant photo:", error);
+        notify.error("Failed to save photo. Please try again.");
       }
     },
-    
+
     convertToBase64(file) {
       return new Promise((resolve, reject) => {
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = () => resolve(reader.result);
-        reader.onerror = error => reject(error);
+        reader.onerror = (error) => reject(error);
       });
     },
-    
+
     openCamera() {
       // For future implementation - open device camera
-      notify.info('Camera feature coming soon! For now, please select from gallery.');
+      notify.info(
+        "Camera feature coming soon! For now, please select from gallery."
+      );
     },
-    
+
     skipPhoto() {
       // Save plant without photo
       const plantData = {
         name: this.plantName,
         mode: this.plantMode,
         photo: null,
-        dateAdded: new Date().toISOString()
+        dateAdded: new Date().toISOString(),
       };
-      
-      localStorage.setItem('newPlantWithPhoto', JSON.stringify(plantData));
-      notify.info('Plant saved without photo. You can add a photo later.');
-      
-      this.$router.push('/my-diary?addPlantWithPhoto=true');
+
+      localStorage.setItem("newPlantWithPhoto", JSON.stringify(plantData));
+      notify.info("Plant saved without photo. You can add a photo later.");
+
+      this.$router.push("/my-diary?addPlantWithPhoto=true");
     },
-    
+
     goBack() {
       // Clear temporary data
-      localStorage.removeItem('newPlantName');
-      localStorage.removeItem('newPlantMode');
-      this.$router.push('/my-diary');
-    }
-  }
+      localStorage.removeItem("newPlantName");
+      localStorage.removeItem("newPlantMode");
+      this.$router.push("/my-diary");
+    },
+  },
 };
 </script>
